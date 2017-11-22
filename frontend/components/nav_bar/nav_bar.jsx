@@ -14,12 +14,20 @@ export default class NavBar extends React.Component {
         this.handleModalClick = this.handleModalClick.bind(this);
         this.onModalClose = this.onModalClose.bind(this);
         this.onModalOpen = this.onModalOpen.bind(this);
+        this.handleDemoLogin = this.handleDemoLogin.bind(this);
     }
 
     handleModalClick(event){
         this.setState({
             modalOpen: true,
             demoLogin: false
+        });
+    }
+
+    handleDemoLogin(){
+        this.setState({
+            modalOpen: true,
+            demoLogin: true
         });
     }
 
@@ -46,10 +54,15 @@ export default class NavBar extends React.Component {
                     <nav className="nav-item"><Link to="">Browse Events</Link></nav>
                     <nav className="nav-item-blue"><Link to="">Create Event</Link></nav>
                     {   currentUser ?
-                        <nav className="nav-item-user">{currentUser.firstname}</nav>
-                        // "DEMO LOGIN"
+                        <div>
+                            <nav className="nav-item-user">{currentUser.firstname}</nav>
+                            <nav className="nav-item-user" onClick={this.props.logout}>LOGOUT</nav>
+                        </div>
                         :
-                        <nav className="nav-item-login" onClick={this.handleModalClick}>Sign In</nav>
+                        <div>
+                            <nav className="nav-item-login" onClick={this.handleModalClick}>Sign In</nav>
+                            <nav className="nav-item-login" onClick={this.handleDemoLogin}>Demo User</nav>
+                        </div>
                     }
                 </div>
                 <Modal
@@ -58,7 +71,11 @@ export default class NavBar extends React.Component {
                     style={ModalStyle}
                     onAfterOpen={this.onModalOpen}>
                     <button onClick={this.onModalClose}>Close</button>
-                    <SessionForm />
+                    <SessionForm
+                        login={login}
+                        signup={signup}
+                        onModalClose={this.onModalClose}
+                        demoLogin={this.state.demoLogin} />
                 </Modal>
             </div>
         )
