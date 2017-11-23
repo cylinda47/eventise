@@ -41,7 +41,7 @@ export default class SessionForm extends React.Component {
         let inputField = (field === 'email') ? this.emailEl : this.passwordEl; 
         const options = {
             strings: strings,
-            typeSpeed: 30,
+            typeSpeed: 80,
             backSpeed: 50
         };
         this.typed = new Typed(inputField, options);
