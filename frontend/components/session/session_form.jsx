@@ -26,7 +26,7 @@ export default class SessionForm extends React.Component {
                 this.setState(this.demoUser);
                 const { email, password } = this.state;
                 this.props.login({ email, password }).then(this.props.onModalClose());
-            }, 2000); 
+            }, 3000); 
         }
     }
 
@@ -41,7 +41,7 @@ export default class SessionForm extends React.Component {
         let inputField = (field === 'email') ? this.emailEl : this.passwordEl; 
         const options = {
             strings: strings,
-            typeSpeed: 50,
+            typeSpeed: 30,
             backSpeed: 50
         };
         this.typed = new Typed(inputField, options);
