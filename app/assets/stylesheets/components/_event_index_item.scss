@@ -1,0 +1,17 @@
+.event-index-items {
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; 
+    margin: 10px auto;
+}
+.event-index-item-detail {
+    border: 1px solid $gray;
+    box-sizing: border-box;
+    border-radius: 0 0 15px 15px;
+    width: 349px;
+    height: 260px;
+    li {
+        padding: 10px;
+    }
+}

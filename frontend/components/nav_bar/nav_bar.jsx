@@ -70,7 +70,9 @@ export default class NavBar extends React.Component {
                     onRequestClose={this.onModalClose}
                     style={ModalStyle}
                     onAfterOpen={this.onModalOpen}>
-                    <button onClick={this.onModalClose}>Close</button>
+                    <div className="exit-icon">
+                        <i className="fa fa-times" aria-hidden="true" onClick={this.onModalClose} />
+                    </div>
                     <SessionForm
                         login={login}
                         signup={signup}

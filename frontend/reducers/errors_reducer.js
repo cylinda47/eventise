@@ -1,9 +1,10 @@
-import { RECEIVE_SESSION_ERRORS, RECEIVE_USER_ERRORS } from "../actions/session_actions";
+import { RECEIVE_SESSION_ERRORS, RECEIVE_USER_ERRORS, RECEIVE_EVENT_ERRORS } from "../actions/session_actions";
 import merge from 'lodash/merge';
 
 const _emptyState = {
     login: [],
-    userForm: []
+    userForm: [],
+    eventForm: []
 };
 
 export const errorsReducer = (state = _emptyState, action) => {
@@ -11,10 +12,13 @@ export const errorsReducer = (state = _emptyState, action) => {
     let newState = merge({}, _emptyState);
     switch (action.type) {
         case RECEIVE_SESSION_ERRORS:
-            newState[login] = action.errors;
+            newState.login = action.errors;
             return newState;
         case RECEIVE_USER_ERRORS:
             newState.userForm = action.errors;
+            return newState;
+        case RECEIVE_EVENT_ERRORS:
+            newState.eventForm = action.errors;
             return newState;
         default:
             return state;

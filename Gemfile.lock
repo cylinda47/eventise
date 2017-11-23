@@ -81,6 +81,8 @@ GEM
     eventmachine (1.2.5)
     execjs (2.7.0)
     ffi (1.9.18)
+    font-awesome-sass (4.7.0)
+      sass (>= 3.2)
     formatador (0.2.5)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
@@ -161,6 +163,11 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails_12factor (0.0.3)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.5)
+    rails_stdout_logging (0.0.5)
     railties (5.1.4)
       actionpack (= 5.1.4)
       activesupport (= 5.1.4)
@@ -229,6 +236,7 @@ DEPENDENCIES
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
+  font-awesome-sass
   guard
   guard-livereload
   jbuilder (~> 2.5)
@@ -239,6 +247,7 @@ DEPENDENCIES
   puma (~> 3.7)
   rack-livereload
   rails (~> 5.1.4)
+  rails_12factor
   rb-fsevent
   sass-rails (~> 5.0)
   selenium-webdriver

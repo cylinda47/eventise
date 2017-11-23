@@ -26,7 +26,7 @@ export default class SessionForm extends React.Component {
                 this.setState(this.demoUser);
                 const { email, password } = this.state;
                 this.props.login({ email, password }).then(this.props.onModalClose());
-            }, 2500); 
+            }, 2000); 
         }
     }
 
@@ -70,12 +70,12 @@ export default class SessionForm extends React.Component {
     render(){
         const { signup } = this.state;
         return(
-            <div className="session-box">
-                <div className="login-form">
+            <div className="session">
+                <section className="session-form">
                     <div>
                         <h1>{ signup ? "Welcome to Eventize" : "Let's get started" }</h1>
-                        <span>{ signup ? "Please let us get to know a bit more about you." : 
-                            "Enter your email and password to continue."}</span>
+                        <p>{ signup ? "Please let us know a bit more about you." : 
+                            "Enter your email and password to continue."}</p>
                     </div>
                     <label>
                         Email address
@@ -103,7 +103,7 @@ export default class SessionForm extends React.Component {
                         { signup ? <div /> : <input type="submit" value="Sign In" onClick={this.handleLogin}/> }
                         <input type="submit" value="Join us" onClick={this.handleSignup}/>
                     </div>
-                </div>
+                </section>
             </div>
         )
     }

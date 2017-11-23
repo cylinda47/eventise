@@ -10,21 +10,20 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
  *= require_self
  */
+
+ /* Library */
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+@import url('https://fonts.googleapis.com/css?family=Pacifico|Quicksand|Roboto');
 
 /* CSS Reset */
 @import "base/reset.scss";
 
 /* Core */
-@import "base/colors.scss";
+@import "base/*";
 
-/* Grid */
-@import "base/grid.scss";
-
-input {
-    border: 1px solid black;
-    padding: 10px;
-    border-radius: 8px;
-}
+/* Componnets */
+@import "components/*";

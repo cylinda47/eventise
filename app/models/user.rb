@@ -4,6 +4,11 @@ class User < ApplicationRecord
     validates :password, length: { minimum: 8, allow_nil: true }
     after_initialize :ensure_session_token
 
+    has_many :events,
+        primary_key: :id,
+        foreign_key: :organizer_id,
+        class_name: :Event
+
     attr_reader :password
 
     def password=(password)

@@ -5,12 +5,12 @@ export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 export const RECEIVE_USER_ERRORS = "RECEIVE_USER_ERRORS";
 
-const receiveCurrentUser = (user) => ({
+const receiveCurrentUser = user => ({
     type: RECEIVE_CURRENT_USER,
     user
 });
 
-const receiveSessionErrors = (errors) => ({
+const receiveSessionErrors = errors => ({
     type: RECEIVE_SESSION_ERRORS,
     errors
 });
@@ -20,13 +20,13 @@ const receiveUserErrors = errors => ({
     errors
 });
 
-export const login = (user) => (dispatch) => (
+export const login = user => dispatch => (
     SessionAPIUtil.login(user)
         .then(currentUser => dispatch(receiveCurrentUser(currentUser)),
         errors => dispatch(receiveSessionErrors(errors)))
 );
 
-export const logout = () => (dispatch) => (
+export const logout = () => dispatch => (
     SessionAPIUtil.logout()
         .then(() => dispatch(receiveCurrentUser(null)))
 );
