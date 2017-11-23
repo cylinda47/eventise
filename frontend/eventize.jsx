@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.createEvent = createEvent;
     window.updateEvent = updateEvent;
     window.deleteEvent = deleteEvent;
+    window.updateUser = updateUser;
     window.getState = store.getState;
     window.dispatch = store.dispatch;
 });
