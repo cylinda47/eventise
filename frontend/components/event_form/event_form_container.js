@@ -6,14 +6,14 @@ const mapStateToProps = (state, ownProps) => {
     const currentUser = state.session.currentUser;
     let formType = "create";
     let event = {
-        title: 'Maxmium: 75 characters',
+        title: '',
         description: '',
-        address: ['Enter the venue name', 'Address', 'Address 2', 'City'],
+        address: ['', '', '', ''],
         image_url: '',
         start_date: '',
         end_date: '',
-        organizer_id: currentUser.id,
-        organizer: "Who's organizing this event?"
+        organizer_id: '',
+        organizer: ''
     };
     if (ownProps.match.path == "/events/:eventId/edit") {
         const eventId = ownProps.match.params.eventId;

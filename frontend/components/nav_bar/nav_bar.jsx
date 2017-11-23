@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import SessionForm from '../session/session_form';
 import Modal from 'react-modal';
 import ModalStyle from '../../util/modal_style';
 
-export default class NavBar extends React.Component {
+class NavBar extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -15,6 +15,8 @@ export default class NavBar extends React.Component {
         this.onModalClose = this.onModalClose.bind(this);
         this.onModalOpen = this.onModalOpen.bind(this);
         this.handleDemoLogin = this.handleDemoLogin.bind(this);
+        this.navigateToBrowse = this.navigateToBrowse.bind(this);
+        this.navigateToCreate = this.navigateToCreate.bind(this);
     }
 
     handleModalClick(event){
@@ -40,6 +42,14 @@ export default class NavBar extends React.Component {
         ModalStyle.content.opacity = 100;
     }
 
+    navigateToBrowse() {
+        this.props.history.push("/");
+    }
+
+    navigateToCreate() {
+        this.props.history.push("/events/new");
+    }
+
     render(){
         const { currentUser, login, signup } = this.props;
         return(
@@ -51,11 +61,11 @@ export default class NavBar extends React.Component {
 
                 </nav>
                 <div className="nav-items">
-                    <nav className="nav-item"><Link to="">Browse Events</Link></nav>
-                    <nav className="nav-item-blue"><Link to="">Create Event</Link></nav>
+                    <nav className="nav-item" onClick={this.navigateToBrowse} >Browse Events</nav>
+                    <nav className="nav-item-blue" onClick={this.navigateToCreate} >Create Event</nav>
                     {   currentUser ?
                         <div>
-                            <nav className="nav-item-user">{currentUser.firstname}</nav>
+                            <nav className="nav-item-user"><i className="fa fa-user-circle" aria-hidden="true"></i>  {currentUser.firstname}</nav>
                             <nav className="nav-item-user" onClick={this.props.logout}>LOGOUT</nav>
                         </div>
                         :
@@ -83,3 +93,5 @@ export default class NavBar extends React.Component {
         )
     }
 }
+
+export default withRouter(NavBar);
