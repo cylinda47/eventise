@@ -51,7 +51,7 @@ class NavBar extends React.Component {
     }
 
     render(){
-        const { currentUser, login, signup } = this.props;
+        const { currentUser, login, signup, errors } = this.props;
         return(
             <div className="nav-bar">
                 <nav className="nav-logo">
@@ -84,8 +84,9 @@ class NavBar extends React.Component {
                         <i className="fa fa-times" aria-hidden="true" onClick={this.onModalClose} />
                     </div>
                     <SessionForm
-                        login={login}
-                        signup={signup}
+                        login={ login }
+                        signup={ signup }
+                        errors={ errors }
                         onModalClose={this.onModalClose}
                         demoLogin={this.state.demoLogin} />
                 </Modal>

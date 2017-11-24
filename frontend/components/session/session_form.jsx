@@ -15,6 +15,7 @@ export default class SessionForm extends React.Component {
         this.handleInput = this.handleInput.bind(this);
         this.handleLogin = this.handleLogin.bind(this);
         this.handleSignup = this.handleSignup.bind(this);
+        this.handleErrors = this.handleErrors.bind(this);
     }
 
     componentDidMount() {
@@ -54,7 +55,9 @@ export default class SessionForm extends React.Component {
     handleLogin() {
         event.preventDefault();
         const { email, password } = this.state;
-        this.props.login({ email, password }).then(this.props.onModalClose());
+        this.props.login({ email, password })
+            .then(null, this.handleErrors)
+            .then(this.props.onModalClose);
     }
 
     handleSignup(){
@@ -62,9 +65,28 @@ export default class SessionForm extends React.Component {
         if (this.state.signup) {
             const { email, password, firstname, lastname } = this.state;
             this.props.signup({ email, password, firstname, lastname })
-                .then(this.props.onModalClose());
+                .then(null, this.handleErrors)
+                .then(this.props.onModalClose);
+        }else{
+            this.setState({ signup: true });
+            $('.login-error-message').remove();
         }
-        this.setState({ signup: true });
+    }
+
+    handleErrors() {
+        const { errors } = this.props;
+        $('.signup-error-message').remove();
+        if (this.state.signup && errors.userForm.length > 0) {
+            if ($('.signup-error-message').length > 0) return;
+            $('input').each( function() {
+                const err = errors.userForm.filter((el, idx) => el.toLowerCase().indexOf(this.id) > -1 );
+                $(this).addClass('input-error').after(`<span class="signup-error-message">${err}</span>`)
+                }
+            )
+        } else if (errors.loginForm) {
+            if($('.login-error-message').length > 0) return;
+                $('p:first').addClass('input-error').after(`<p class="login-error-message">${errors.loginForm}</p>`);
+        }
     }
 
     render(){
@@ -74,34 +96,39 @@ export default class SessionForm extends React.Component {
                 <section className="session-form">
                     <div>
                         <h1>{ signup ? "Welcome to Eventize" : "Let's get started" }</h1>
-                        <p>{ signup ? "Please let us know a bit more about you." : 
+                        <p>{ signup ? "We'd like to know a bit more about you." : 
                             "Enter your email and password to continue."}</p>
                     </div>
-                    <label>
-                        Email address
-                        <input
-                            ref={(el) => { this.emailEl = el; }}
-                            type="text"
-                            onChange={this.handleInput('email')}/>
-                    </label>
-                    <label>
-                        Password
-                        <input
-                            ref={(el) => { this.passwordEl = el; }}
-                            type="password"
-                            onChange={this.handleInput('password')}/>
-                    </label>
-                    { signup ?
-                        <div>
-                            <label>First name<input type="text" onChange={this.handleInput('firstname')} /></label>
-                            <label>Last name<input type="text" onChange={this.handleInput('lastname')} /></label>
-                        </div>
-                        :
-                        <div />
-                    }
+                    <div className="session-input-fields">
+                        <label>
+                            <p>Email address</p>
+                            <input
+                                autoFocus
+                                ref={(el) => { this.emailEl = el; }}
+                                type="text"
+                                id="email"
+                                onChange={this.handleInput('email')}/>
+                        </label>
+                        <label>
+                            <p>Password</p>
+                            <input
+                                ref={(el) => { this.passwordEl = el; }}
+                                type="password"
+                                id="password"
+                                onChange={this.handleInput('password')}/>
+                        </label>
+                        { signup ?
+                            <div className="session-signup">
+                                <label><p>First name</p><input type="text" id="firstname" onChange={this.handleInput('firstname')} /></label>
+                                <label><p>Last name</p><input type="text" id="lastname" onChange={this.handleInput('lastname')} /></label>
+                            </div>
+                            :
+                            <div />
+                        }
+                    </div>
                     <div className="session-buttons">
-                        { signup ? <div /> : <input type="submit" value="Sign In" onClick={this.handleLogin}/> }
-                        <input type="submit" value="Join us" onClick={this.handleSignup}/>
+                        {signup ? <div /> : <button onClick={this.handleLogin}>Sign In</button> }
+                        <button onClick={this.handleSignup}>Join us</button>
                     </div>
                 </section>
             </div>

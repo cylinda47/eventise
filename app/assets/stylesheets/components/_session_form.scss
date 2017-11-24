@@ -1,15 +1,39 @@
 .session-form{
     font-family: 'Quicksand', sans-serif;
     font-size: 15px;
-    padding: 20px;
+    padding: 0 30px;
     vertical-align: top;
     h1, p {
         text-align: center;
-        padding: 10px;
+        padding-bottom: 10px;
     }
     h1 {
         font-size: 28px;
     }
+}
+
+.session-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    button {
+        display: block;
+        border-radius: 20px;
+        background-color: rgb(204, 7, 66);
+        width: 40%;
+        color: white;
+        text-align: center;
+        margin: 5px;
+        padding: 10px;
+    }
+}
+
+.session-input-fields {
+    p {
+        text-align: left;
+        padding: 10px 0 0 0;
+    }
+    margin: 10px 0 10px 0;
     input {
         display: block;
         width: 100%;
@@ -18,22 +42,25 @@
         padding: 10px;
     }
     input:hover {
-            border-bottom: 1px solid black;
-        }
-    input[type="submit"] {
-        border-radius: 20px;
-        background-color: rgb(204, 7, 66);
-        width: 47%;
-        color: white;
-        text-align: center;
-        margin: 5px;
+        border-bottom: 1px solid $light-tiffany;
     }
-
-    
+    input:focus {
+        border-bottom: 2px solid $tiffany;
+    }
 }
 
-.session-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+.login-error-message {
+    padding: 5px 0 15px 10px;
+    color: red;
+}
+
+.signup-error-message {
+    padding-top:2px;
+    font-size: 10px;
+    color: red;
+    display: block;
+}
+
+.input-error {
+    border-color: red;
 }

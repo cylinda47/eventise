@@ -1,6 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import ReactQuill from 'react-quill'; // ES6
+import ImageUpload from './image_upload';
 
 class EventForm extends React.Component {
 
@@ -26,8 +27,8 @@ class EventForm extends React.Component {
         // Redirect if :eventId/edit doesnt exist
     }
 
-    handleInput() {
-
+    handleInput(field) {
+        (event) => this.setState({ title: event.target.value })
     }
 
     handleAddress() {
@@ -65,7 +66,7 @@ class EventForm extends React.Component {
                         type="text"
                         placeholder="Maxmium: 75 characters"
                         value={this.state.title}
-                        onChange={this.handleInput} />
+                        onChange={this.handleInput('title')} />
 
                     <label>Location</label>
                     { isOnlineEvent ? <div className="event-form-online-event">This is an online event</div> :
@@ -122,6 +123,8 @@ class EventForm extends React.Component {
                             <input type="time" onChange={this.handleTime} />
                         </div>
                     </div>
+                    <label>Event Image</label>
+                    <ImageUpload />
 
                     <label>Event Description
                         <span className="important"> *</span>
@@ -131,7 +134,14 @@ class EventForm extends React.Component {
                         onChange={this.handleChange}
                         className="rich-text-editer" />
                     </div>
-
+                    
+                    <label>Organizer Name<span className="important"> *</span></label>
+                    <input
+                        type="text"
+                        placeholder="Who's organizing this event?"
+                        value={this.state.organizer}
+                        onChange={this.handleInput} />
+                    <center><button className="event-form-submit">Make yoru event live</button></center>
                 </div>
             </div>
         )

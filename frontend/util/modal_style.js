@@ -22,6 +22,6 @@ module.exports = {
     opacity                    : '0',
     transition                 : 'opacity 1s', 
     width                      : '450px',
-    height                     : '450px'
+    height                     : '520px'
   }
 }
