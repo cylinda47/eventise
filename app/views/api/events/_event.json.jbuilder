@@ -6,4 +6,4 @@ json.extract! event, :id,
             :end_date,
             :organizer_id,
             :organizer
-json.image_url asset_path(event.image.url)
+json.image_url asset_path(event.image.url(:original))
