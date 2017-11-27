@@ -12,14 +12,16 @@ class EventForm extends React.Component {
             Object.assign({}, this.formEl, this.props.event)
             :
             Object.assign({ id: '' }, this.formEl, this.props.event)
-        this.handleChange = this.handleChange.bind(this);
+            
+        this.handleEditerChange = this.handleEditerChange.bind(this);
         this.enableAddress = this.enableAddress.bind(this);
         this.disableAddress = this.disableAddress.bind(this);
         this.enableOnlineEvent = this.enableOnlineEvent.bind(this);
         this.resetAddress = this.resetAddress.bind(this);
+        this.handleInput = this.handleInput.bind(this);
     }
 
-    handleChange(value) {
+    handleEditerChange(value) {
         this.setState({ description: value })
     }
     
@@ -27,8 +29,11 @@ class EventForm extends React.Component {
         // Redirect if :eventId/edit doesnt exist
     }
 
-    handleInput(field) {
-        (event) => this.setState({ title: event.target.value })
+    handleInput(event) {
+        console.log(this.state);
+        return this.setState({
+            [event.currentTarget.id]: event.currentTarget.value
+        });
     }
 
     handleAddress() {
@@ -64,9 +69,10 @@ class EventForm extends React.Component {
                     <label>Event Title<span className="important"> *</span></label>
                     <input
                         type="text"
+                        id="title"
                         placeholder="Maxmium: 75 characters"
                         value={this.state.title}
-                        onChange={this.handleInput('title')} />
+                        onChange={this.handleInput} />
 
                     <label>Location</label>
                     { isOnlineEvent ? <div className="event-form-online-event">This is an online event</div> :
@@ -114,30 +120,31 @@ class EventForm extends React.Component {
                     <div className="event-form-datetime">
                         <div className="event-form-starttime">
                             <label>Starts</label>
-                            <input type="date" placeholder={this.state.startDate} onChange={this.handleInput} />
+                            <input id="start_date" type="date" placeholder={this.state.startDate} onChange={this.handleInput} />
                             <input type="time" onChange={this.handleTime} />
                         </div>
                         <div className="event-form-endtime">
                         <label>Ends</label>
-                            <input type="date" placeholder={this.state.endDate} onChange={this.handleInput}/>
+                            <input id="end_date" type="date" placeholder={this.state.endDate} onChange={this.handleInput}/>
                             <input type="time" onChange={this.handleTime} />
                         </div>
                     </div>
                     <label>Event Image</label>
                     <ImageUpload />
-
                     <label>Event Description
                         <span className="important"> *</span>
                     </label>
                     <div className="event-description-box">
-                        <ReactQuill value={this.state.description}
-                        onChange={this.handleChange}
+                        <ReactQuill
+                        value={this.state.description}
+                        onChange={this.handleEditerChange}
                         className="rich-text-editer" />
                     </div>
                     
                     <label>Organizer Name<span className="important"> *</span></label>
                     <input
                         type="text"
+                        id="organizer"
                         placeholder="Who's organizing this event?"
                         value={this.state.organizer}
                         onChange={this.handleInput} />

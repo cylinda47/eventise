@@ -12,7 +12,6 @@ export default class ImageUpload extends React.Component {
     _handleSubmit(e) {
         e.preventDefault();
         // TODO: do something with -> this.state.file
-        console.log('handle uploading-', this.state.file);
     }
 
     _handleImageChange(e) {
@@ -46,9 +45,6 @@ export default class ImageUpload extends React.Component {
                     <input className="fileInput"
                         type="file"
                         onChange={(e) => this._handleImageChange(e)} />
-                    <button className="submitButton"
-                        type="submit"
-                        onClick={(e) => this._handleSubmit(e)}>Upload Image</button>
                 </form>
                 <div className="imgPreview">
                     {$imagePreview}
