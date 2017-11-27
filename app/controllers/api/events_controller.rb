@@ -44,9 +44,12 @@ class Api::EventsController < ApplicationController
             :title,
             :description,
             :address,
-            :image_url,
+            :is_online_event,
+            :image,
             :start_date,
             :end_date,
+            :start_time,
+            :end_time,
             :organizer_id,
             :organizer
         )

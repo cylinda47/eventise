@@ -9,10 +9,12 @@ const mapStateToProps = (state, ownProps) => {
         title: '',
         description: '',
         address: ['', '', '', ''],
-        image_url: '',
+        is_online_event: false,
         start_date: '',
         end_date: '',
-        organizer_id: '',
+        start_time: '',
+        end_time: '',
+        organizer_id: currentUser.id,
         organizer: ''
     };
     if (ownProps.match.path == "/events/:eventId/edit") {
@@ -24,7 +26,7 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    const submitForm = ownProps.match.path === "/" ? createEvent : updateEvent;
+    const submitForm = ownProps.match.path === "/events/new" ? createEvent : updateEvent;
     return {
         submitForm: event => dispatch(submitForm(event))
     }

@@ -12,11 +12,14 @@ export const fetchEvent = eventId => (
     })
 );
 
-export const createEvent = event => (
+export const createEvent = formData => (
     $.ajax({
         method: 'POST',
         url: `/api/events`,
-        data: { event }
+        data_type: "json",
+        processData: false,
+        contentType: false,
+        data: formData
     })
 );
 
@@ -24,6 +27,8 @@ export const updateEvent = event => (
     $.ajax({
         method: 'PATCH',
         url: `/api/events/${event.id}`,
+        processData: false,
+        contentType: false,
         data: { event }
     })
 );
@@ -34,3 +39,4 @@ export const deleteEvent = eventId => (
         url: `/api/events/${eventId}`
     })
 );
+

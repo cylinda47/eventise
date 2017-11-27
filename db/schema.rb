@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171125074542) do
+ActiveRecord::Schema.define(version: 20171127010811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 20171125074542) do
     t.string "address", default: [], array: true
     t.float "lat"
     t.float "lng"
-    t.string "image_url"
     t.date "start_date", null: false
     t.date "end_date", null: false
     t.integer "organizer_id", null: false
@@ -32,6 +31,9 @@ ActiveRecord::Schema.define(version: 20171125074542) do
     t.string "image_content_type"
     t.integer "image_file_size"
     t.datetime "image_updated_at"
+    t.boolean "is_online_event", default: false
+    t.time "start_time"
+    t.time "end_time"
     t.index ["end_date"], name: "index_events_on_end_date"
     t.index ["organizer_id"], name: "index_events_on_organizer_id"
     t.index ["start_date"], name: "index_events_on_start_date"
