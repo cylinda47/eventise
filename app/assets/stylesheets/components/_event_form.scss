@@ -70,9 +70,16 @@
 
 .event-form-datetime {
     display: flex;
-    justify-content: left;
+    justify-content: flex-start;
+    div {
+        width: 50%;
+    }
+}
+
+.event-form-starttime,
+.event-form-endtime {
     input {
-        display: inline;
+        display: block;
         width: 130px;
         padding: 12px;
     }
@@ -97,21 +104,8 @@
     text-transform: initial;
     margin: 12px;
     padding: 12px;
+    color: $blue;
 }
-
-// .event-form-submit {
-//     text-transform: uppercase;
-//     padding: 17px;
-//     margin: 10px;
-//     background-color: $green;
-//     transition: 300ms linear;
-//     font-size: 20px;
-// }
-
-// .event-form-submit:hover {
-//     background-color: $darker-green;
-//     color: white;
-// }
 
 .event-form-submit {
   margin-top: 25px;
@@ -141,4 +135,5 @@
     display: inline;
     text-transform: initial;
     letter-spacing: 0.8px;
+    font-weight: 700;
 }

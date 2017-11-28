@@ -16,6 +16,7 @@ export default class SessionForm extends React.Component {
         this.handleLogin = this.handleLogin.bind(this);
         this.handleSignup = this.handleSignup.bind(this);
         this.handleErrors = this.handleErrors.bind(this);
+        this.returnToLogin = this.returnToLogin.bind(this);
     }
 
     componentDidMount() {
@@ -34,6 +35,12 @@ export default class SessionForm extends React.Component {
     componentWillUnmount() {
         if (this.props.demoLogin) {
             this.typed.destroy();
+        }
+    }
+
+    componentDidUpdate() {
+        if (!this.state.signup) {
+            $('.signup-error-message').remove();
         }
     }
 
@@ -73,6 +80,10 @@ export default class SessionForm extends React.Component {
         }
     }
 
+    returnToLogin() {
+        this.setState({ signup: false });
+    }
+
     handleErrors() {
         const { errors } = this.props;
         $('.signup-error-message').remove();
@@ -95,6 +106,7 @@ export default class SessionForm extends React.Component {
             <div className="session">
                 <section className="session-form">
                     <div>
+                        {signup ? "" : <center><img src="https://image.flaticon.com/icons/svg/320/320416.svg"/></center>}
                         <h1>{ signup ? "Welcome to Eventize" : "Let's get started" }</h1>
                         <p>{ signup ? "We'd like to know a bit more about you." : 
                             "Enter your email and password to continue."}</p>
@@ -130,6 +142,7 @@ export default class SessionForm extends React.Component {
                         {signup ? <div /> : <button onClick={this.handleLogin}>Sign In</button> }
                         <button onClick={this.handleSignup}>Join us</button>
                     </div>
+                    <center>{signup ? <div className="session-link" onClick={this.returnToLogin}>Return to Sign In Here</div> : ""}</center>
                 </section>
             </div>
         )

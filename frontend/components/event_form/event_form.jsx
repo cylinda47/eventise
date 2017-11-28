@@ -145,8 +145,9 @@ class EventForm extends React.Component {
             if ($('.event-error-message').length > 0) return;
             $('div.event-form input').each(function () {
                 const err = errors.filter((el, idx) => el.toLowerCase().indexOf(this.id.replace("_", " ")) > -1);
-                if (err)
-                $(this).addClass('input-error').after(`<span class="event-error-message">${err}</span>`)
+                if (err.length > 0) {
+                    $(this).after(`<span class="event-error-message">${err}</span>`);
+                }
             }
             )
         } 
@@ -169,7 +170,7 @@ class EventForm extends React.Component {
                         <input
                             type="text"
                             id="title"
-                            placeholder="Maxmium: 75 characters"
+                            placeholder="Maxmium: 60 characters"
                             value={this.state.title}
                             onChange={this.handleInput} />
     

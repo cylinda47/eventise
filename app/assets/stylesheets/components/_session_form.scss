@@ -10,7 +10,22 @@
     h1 {
         font-size: 28px;
     }
+    img {
+        width: 150px;
+    }
+    p {
+        padding: 5px;
+    }
 }
+    .session-link {
+        font-size: 14px;
+        margin-top: 15px;
+        cursor: pointer;
+        color: $dark-gray;
+    }
+    .session-link:hover {
+        text-decoration: underline;
+    }
 
 .session-buttons {
     display: flex;
@@ -23,7 +38,7 @@
         width: 40%;
         color: white;
         text-align: center;
-        margin: 5px;
+        margin: 10px 5px;
         padding: 10px;
     }
 }
@@ -52,13 +67,17 @@
 .login-error-message {
     padding: 5px 0 15px 10px;
     color: red;
+    font-weight: 700;
 }
 
 .signup-error-message {
     padding-top:2px;
-    font-size: 10px;
+    font-size: 12px;
+    letter-spacing: 0.5px;
     color: red;
     display: block;
+    font-weight: 700;
+    text-align: right;
 }
 
 .input-error {

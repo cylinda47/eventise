@@ -49,17 +49,25 @@
 .event-detail-header-month {
     margin-top: 15px;
     text-transform: uppercase;
-    letter-spacing: 0.8px;
+    letter-spacing: 1.1px;
     font-size: 12px;
     color: $dark-gray;
-    font-weight: 700;
+    font-weight: 600;
+    text-align: center;
+    width:35px;
+    font-family: 'Nunito', sans-serif;
 }
+
 .event-detail-header-date {
     text-transform: uppercase;
-    letter-spacing: 1.3px;
+    letter-spacing: 0.3px;
     font-size: 24px;
+    font-weight: 400;
     color: $dark-gray;
-    padding: 6px 1px 0px 1px;
+    padding: 4px 1px 0px 1px;
+    text-align: center;
+    width:35px;
+    font-family: 'Nunito', sans-serif;
 }
 
 .event-detail-header-title {
@@ -68,7 +76,7 @@
     margin-top: 50px;
     color: $gray-black;
     letter-spacing: 0.5px;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Oxygen', sans-serif;
 }
 
 .event-detail-header-organizer {
@@ -83,16 +91,17 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid $gray;
-    padding: 20px;
+    border-top: 1px solid $gray;
+    border-bottom: 1px solid $gray;
+    padding: 15px 15px 15px 30px;
     i {
         font-size: 30px;
     }
     button {
         background-color: $green;
-        width: 260px;
+        width: 270px;
         font-size: 14px;
-        padding: 10px 15px;
+        padding: 13px 15px;
         text-align: center;
         text-transform: uppercase;
         color: white;
@@ -122,22 +131,42 @@
 }
 
 .event-detail-content-main,
-.event-detail-content-sidebar {
+.event-detail-content-sidebar,
+.event-detail-organizer-detail {
     font-family: 'Nunito', sans-serif;
     font-size: 12px;
     letter-spacing: 1px;
     color: $gray-black;
-    padding: 30px 25px 25px 60px;
+    padding: 30px 25px 25px 50px;
+}
+
+.event-detail-organizer-detail {
+    border-top: 1px solid $bg-gray;
+    padding-left: 25px;
+    img {
+        margin-top: 20px;
+        width: 100px;
+        height: 100%;
+    }
+}
+
+.organizer {
+    text-transform: initial;
+    font-size: 24px;
+    padding-top: 20px;
 }
 
 .event-detail-description,
 .event-detail-datetime,
 .event-detail-location {
-    padding: 25px 25px 25px 0;
+    padding: 25px 25px 20px 0;
     font-size: 16px;
     color: $dark-gray;
     font-family: 'Nunito', sans-serif;
     letter-spacing: 0.3px;
+}
+
+.event-detail-description {
     h1 {
         font-size: 26px;
     }
@@ -148,6 +177,13 @@
         padding: 0px;
         margin: 0px;
     }
+    strong {
+        font-weight: 700;
+    }
+    li {
+        list-style: initial;
+        list-style-position: inside; 
+    }
 }
 
 .event-detail-edit-bar {
@@ -156,8 +192,9 @@
     background-color: $bg-gray;
     color: $dark-gray;
     button {
-        padding: 15px;
-        width: 150px;
+        font-size: 14px;
+        padding: 10px 15px;
+        width: 180px;
         background-color: white;
         border-radius: 5px;
         text-transform: uppercase;
@@ -169,4 +206,10 @@
         background-color: black;
         color: white;
     }
+}
+
+
+.event-detail-time {
+    margin-top: 20px;
+    color: $blue;
 }

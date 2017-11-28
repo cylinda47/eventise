@@ -12,9 +12,10 @@ export default class EventDetail extends React.Component {
     
     render(){
         const { event, currentUserId } = this.props;
-        const dateOptions = { weekday: 'short', month: 'long', day: 'numeric', year: 'numeric' };
-        const timeOptions1 = { hour: 'numeric', minute: 'numeric' }
-        const timeOptions2 = { hour: 'numeric', minute: 'numeric', timeZoneName: 'short' }
+        const dateOptions1 = { weekday: 'short', month: 'long', day: 'numeric', year: 'numeric' };
+        const dateOptions2 = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' };
+        const timeOptions1 = { hour: 'numeric', minute: 'numeric', hour12: false }
+        const timeOptions2 = { hour: 'numeric', minute: 'numeric', timeZoneName: 'short', hour12: false }
         if (event) {
             return(
                 <div>
@@ -56,11 +57,19 @@ export default class EventDetail extends React.Component {
                             <div className="event-detail-content-sidebar">
                                 <div><b>DATE AND TIME</b></div>
                                 <div className="event-detail-datetime">
-                                    {new Date(event.start_date).toLocaleString('en-US', dateOptions)}
-                                    <br/>
-                                    {event.start_date === event.end_date ? "" : new Date(event.end_date).toLocaleString('en-US', dateOptions)}
-                                    <br/><br/>
-                                    {new Date(event.end_date).toLocaleString('en-US', timeOptions1)} - {new Date(event.end_date).toLocaleString('en-US', timeOptions2)}
+                                    { event.start_date === event.end_date ? 
+                                        <div>
+                                            {new Date(event.start_date).toLocaleString('en-US', dateOptions1)}
+                                            <div className="event-detail-time">
+                                                {new Date(event.start_time).toLocaleString('en-US', timeOptions1)} - {new Date(event.end_time).toLocaleString('en-US', timeOptions2)}
+                                            </div>
+                                        </div>
+                                        :
+                                        <div>
+                                            {new Date(event.start_date).toLocaleString('en-US', dateOptions2)}, {new Date(event.start_time).toLocaleString('en-US', timeOptions1)} -
+                                            {new Date(event.end_date).toLocaleString('en-US', dateOptions2)}, {new Date(event.end_time).toLocaleString('en-US', timeOptions2)}
+                                        </div>
+                                    }
                                 </div>
                                 <div><b>LOCATION</b></div>
                                 <div className="event-detail-location">
@@ -71,6 +80,13 @@ export default class EventDetail extends React.Component {
                                     }
                                 </div>
                             </div>
+                        </div>
+                        <div className="event-detail-organizer-detail">
+                            <center>
+                                <div><b>ORANGIZER OF THIS EVENT</b></div>
+                                <img src="https://image.flaticon.com/icons/svg/149/149071.svg" />
+                                <div className="organizer">{event.organizer}</div>    
+                            </center>
                         </div>
                         { currentUserId === event.organizer_id ?
                         <div className="event-detail-edit-bar">

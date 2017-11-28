@@ -47,7 +47,13 @@ class NavBar extends React.Component {
     }
 
     navigateToCreate() {
-        this.props.history.push("/events/new");
+        if (this.props.currentUser) {
+            this.props.history.push("/events/new");
+        }else{
+            this.setState({
+                modalOpen: true
+            })
+        }
     }
 
     render(){
