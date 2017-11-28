@@ -22,22 +22,28 @@ const receiveEventErrors = errors => ({
 export const fetchEvents = () => dispatch => (
     EventAPIUtil.fetchEvents()
         .then(events => dispatch(receiveEvents(events)),
-        errors => dispatch(receiveEventErrors(errors)))
+        errors => dispatch(receiveEventErrors(errors.responseJSON)))
+);
+
+export const fetchEvent = eventId => dispatch => (
+    EventAPIUtil.fetchEvent(eventId)
+        .then(event => dispatch(receiveEvent(event)),
+        errors => dispatch(receiveEventErrors(errors.responseJSON)))
 );
 
 export const createEvent = event => dispatch => (
     EventAPIUtil.createEvent(event)
         .then(event => dispatch(receiveEvent(event)),
-        errors => dispatch(receiveEventErrors(errors)))
+        errors => dispatch(receiveEventErrors(errors.responseJSON)))
 );
 
 export const updateEvent = event => dispatch => (
     EventAPIUtil.updateEvent(event)
         .then(event => dispatch(receiveEvent(event)),
-        errors => dispatch(receiveEventErrors(errors)))
+        errors => dispatch(receiveEventErrors(errors.responseJSON)))
 );
 
 export const deleteEvent = eventId => dispatch => (
     EventAPIUtil.deleteEvent(eventId)
-        .then((errors) => dispatch(receiveEventErrors(errors)))
+        .then((errors) => dispatch(receiveEventErrors(errors.responseJSON)))
 );

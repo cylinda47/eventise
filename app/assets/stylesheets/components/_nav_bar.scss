@@ -2,11 +2,12 @@
     display: flex;
     justify-content: space-between;
     nav {
-        padding: 15px;
+        padding: 0px 25px;
     }
     border-bottom: 1px solid $lightest-gray;
     font-family: 'Quicksand', sans-serif;
     font-size: 14px;
+    background-color: white;
 }
 
 .nav-logo {
@@ -24,12 +25,49 @@
     cursor: pointer;
     nav {
         border-left: 1px solid $lightest-gray;
-        letter-spacing: 1.3px;
+        letter-spacing: 1.2px;
+        padding-top: 19px;
     }
-    
+    nav:hover {
+        background-color: $lightest-gray;
+    }
+    position: relative;
+}
+
+.nav-item-dropdown-top {
+    position: relative;
+    nav {
+        padding-bottom: 19px;
+    }
+    nav:hover {
+        background-color: $lightest-gray;
+    }
+}
+
+.nav-item-dropdown {
+    position: absolute;
+    height: 20px;
+    vertical-align: center;
+    display: none;
+    z-index: 1;
+    background-color: white;
+    border-bottom: 1px solid $lightest-gray;
+    border-top: 1px solid $lightest-gray;
+    width: 90px;
+    right: 0px;
+    text-align: right;
+}
+
+.nav-item-dropdown-top:hover .nav-item-dropdown {
+    display: block;
 }
 
 .exit-icon {
     display: block;
     text-align: right;
+}
+
+.nav-item-blue {
+    font-weight: 700;
+    color: $blue;
 }

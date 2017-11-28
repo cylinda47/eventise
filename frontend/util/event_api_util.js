@@ -29,7 +29,7 @@ export const updateEvent = event => (
         url: `/api/events/${event.id}`,
         processData: false,
         contentType: false,
-        data: { event }
+        data: event
     })
 );
 

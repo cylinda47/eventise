@@ -20,7 +20,7 @@ class Api::EventsController < ApplicationController
     end
     
     def update
-        @event = Event.find(params[:id])
+        @event = Event.find(params[:event][:id])
         if @event.update_attributes(event_params)
             render "api/events/show"
         else
@@ -43,7 +43,6 @@ class Api::EventsController < ApplicationController
         params.require(:event).permit(
             :title,
             :description,
-            :address,
             :is_online_event,
             :image,
             :start_date,
@@ -51,7 +50,8 @@ class Api::EventsController < ApplicationController
             :start_time,
             :end_time,
             :organizer_id,
-            :organizer
+            :organizer,
+            address: []
         )
     end
 end

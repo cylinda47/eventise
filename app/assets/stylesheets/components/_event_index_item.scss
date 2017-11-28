@@ -1,17 +1,71 @@
 .event-index-items {
-    width: 80%;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center; 
     margin: 10px auto;
+    ul {
+        padding: 0px;
+        margin: 0px;
+    }
 }
 .event-index-item-detail {
-    border: 1px solid $gray;
+    margin: 20px;
+    border: 1px solid $lightest-gray;
+    border-bottom: 2px solid $gray;
     box-sizing: border-box;
     border-radius: 0 0 15px 15px;
     width: 349px;
-    height: 260px;
+    height: 300px;
     li {
-        padding: 10px;
+        padding: 0 15px;
+    }
+    background-color: white;
+}
+
+.event-index-item-detail:hover {
+    box-shadow: 0 0 8px $lightest-gray;
+    cursor: pointer;
+}
+
+.event-index-item-date {
+    font-family: 'Nunito', sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: $dark-gray;
+}
+
+.event-index-item-title {
+    margin: 5px 0;
+    font-size: 17px;
+    font-weight: 700;
+    div {
+        height: 40px;
+    }
+}
+
+.event-index-item-title:hover {
+    text-decoration: underline;
+}
+
+
+.event-index-item-location {
+    font-size: 12px;
+    color: $gray;
+    div {
+        margin-bottom: 10px;
+    }
+}
+
+.event-index-item-options {
+    border-top: 1px solid $lightest-gray;
+    display: flex;
+    justify-content: flex-end;
+    div {
+        border-left: 1px solid $lightest-gray;
+        text-align: center;
+        height: 40px;
+        padding: 8px 3px 0px 15px;
     }
 }

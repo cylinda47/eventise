@@ -64,14 +64,14 @@ class NavBar extends React.Component {
                     <nav className="nav-item" onClick={this.navigateToBrowse} >Browse Events</nav>
                     <nav className="nav-item-blue" onClick={this.navigateToCreate} >Create Event</nav>
                     {   currentUser ?
-                        <div>
+                        <div className="nav-item-dropdown-top">
                             <nav className="nav-item-user"><i className="fa fa-user-circle" aria-hidden="true"></i>  {currentUser.firstname}</nav>
-                            <nav className="nav-item-user" onClick={this.props.logout}>LOGOUT</nav>
+                            <nav className="nav-item-dropdown" onClick={this.props.logout}>LOGOUT</nav>
                         </div>
                         :
-                        <div>
+                        <div className="nav-item-dropdown-top">
                             <nav className="nav-item-login" onClick={this.handleModalClick}>Sign In</nav>
-                            <nav className="nav-item-login" onClick={this.handleDemoLogin}>Demo User</nav>
+                            <nav className="nav-item-dropdown" onClick={this.handleDemoLogin}>Demo User</nav>
                         </div>
                     }
                 </div>

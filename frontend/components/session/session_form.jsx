@@ -78,7 +78,6 @@ export default class SessionForm extends React.Component {
         $('.signup-error-message').remove();
         if (this.state.signup && errors.userForm.length > 0) {
             if ($('.signup-error-message').length > 0) return;
-            console.log($('div.session-input-fields input'))
             $('div.session-input-fields input').each( function() {
                 const err = errors.userForm.filter((el, idx) => el.toLowerCase().indexOf(this.id) > -1 );
                 $(this).addClass('input-error').after(`<span class="signup-error-message">${err}</span>`)

@@ -1,4 +1,6 @@
-import { RECEIVE_SESSION_ERRORS, RECEIVE_USER_ERRORS, RECEIVE_EVENT_ERRORS } from "../actions/session_actions";
+import { RECEIVE_SESSION_ERRORS, RECEIVE_USER_ERRORS } from "../actions/session_actions";
+import { RECEIVE_EVENT_ERRORS } from "../actions/event_actions";
+
 import merge from 'lodash/merge';
 
 const _emptyState = {

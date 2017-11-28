@@ -3,6 +3,7 @@
     margin: 0 auto;
     padding-top: 20px;
     padding-bottom: 100px;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .event-description-box {
@@ -54,7 +55,7 @@
     input {
         display: block;
         width: 80%;
-        margin: 10px;
+        margin: 5px 10px;
         border: 1px solid $gray;
         border-radius: 10px;
         padding: 15px;
@@ -72,7 +73,7 @@
     justify-content: left;
     input {
         display: inline;
-        width: 140px;
+        width: 130px;
         padding: 12px;
     }
 }
@@ -116,14 +117,28 @@
   margin-top: 25px;
   padding: 18px;
   background: #fff;
-  border: 4px solid #d3d3d3;
+  border: 4px solid $lightest-gray;;
   border-radius: 15px;
   font-weight: 600;
   text-transform: uppercase;
   font-size: 16pt;
   cursor: pointer;
   transition: 300ms linear;
+  color: $lightest-gray;
 }
+
 .event-form-submit:hover {
   border-color: $tiffany;
+  color: $tiffany;
+}
+
+.event-error-message {
+    margin: 0 15px;
+    padding-top: 0px;
+    padding-bottom: 10px;
+    font-size: 10px;
+    color: red;
+    display: inline;
+    text-transform: initial;
+    letter-spacing: 0.8px;
 }

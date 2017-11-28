@@ -6,7 +6,11 @@ import React from 'react';
 export default class ImageUpload extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { file: '', imagePreviewUrl: '' };
+        this.state = { file: '', imagePreviewUrl: this.props.image_url };
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({ imagePreviewUrl: nextProps.image_url })
     }
     
     _handleImageChange(e) {
@@ -18,7 +22,7 @@ export default class ImageUpload extends React.Component {
                 file: file,
                 imagePreviewUrl: reader.result
             });
-            this.props.handleImageFile(this.state.file);
+            this.props.handleImageFile(this.state.file, reader.result);
         }
         reader.readAsDataURL(file);
     }
@@ -29,13 +33,13 @@ export default class ImageUpload extends React.Component {
         if (imagePreviewUrl) {
             $imagePreview = (<img src={imagePreviewUrl} />);
         } else {
-            $imagePreview = (<div className="previewText">Please select an Image for Preview</div>);
+            $imagePreview = (<div className="previewText">A default image will be used if no images to be uploaded.</div>);
         }
-
         return (
             <div className="previewComponent">
                 <form onSubmit={(e) => this._handleSubmit(e)}>
                     <input className="fileInput"
+                        id="image"
                         type="file"
                         onChange={(e) => this._handleImageChange(e)} />
                 </form>
