@@ -1,3 +1,15 @@
 .event-index {
-    background-color: $bg-gray;
+    width: 100%;
+    display: block;
+}
+
+.search-background-container {
+    width: 100%;
+    overflow: hidden;
+    height: 450px;
+    border-bottom: 1px solid $lightest-gray;
+}
+
+.search-background-container img {
+    margin-top: -350px;
 }

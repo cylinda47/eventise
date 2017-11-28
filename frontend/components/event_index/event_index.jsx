@@ -1,5 +1,6 @@
 import React from 'react';
 import EventIndexItem from './event_index_item';
+import SearchBackground from './search_background';
 
 class EventIndex extends React.Component {
     constructor(props){
@@ -13,6 +14,7 @@ class EventIndex extends React.Component {
     render(){
         return(
             <div className="event-index">
+                <SearchBackground />
                 <EventIndexItem
                     events={this.props.events}
                     fetchEvents={this.props.fetchEvents}
