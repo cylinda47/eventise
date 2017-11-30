@@ -4,11 +4,18 @@ class User < ApplicationRecord
     validates :password, length: { minimum: 8, allow_nil: true }
     after_initialize :ensure_session_token
 
-    has_many :events,
+    has_many :organized_events,
         primary_key: :id,
         foreign_key: :organizer_id,
         class_name: :Event
 
+    has_many :orders,
+        primary_key: :id,
+        foreign_key: :purchaser_id,
+        class_name: :Order
+
+    has_many :bookmarks
+        
     attr_reader :password
 
     def password=(password)

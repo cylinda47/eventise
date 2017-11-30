@@ -1,0 +1,1 @@
+json.extract! order, :id, :purchaser_id, :ticket_id, :quantity

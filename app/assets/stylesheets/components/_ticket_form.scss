@@ -1,0 +1,70 @@
+.ticket-form {
+    margin: 30px 0px;
+}
+
+.ticket-create-container {
+    margin: 0 auto;
+    border-radius: 5px;
+    border: 1px solid $gray;
+    background-color: $bg-gray;
+    width: 650px;
+}
+
+.ticket-header{
+    border-bottom: 1px solid $gray;
+}
+
+.ticket-header,
+.ticket-entry {
+    ul {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    li {
+        padding: 15px;
+        text-transform: initial;
+    }
+    li:first-of-type {
+        width: 230px;
+    }
+    li:nth-child(2) {
+        width: 110px;
+        padding-right: 25px;
+    }
+    li:nth-child(3){
+        padding-left: 10px;
+        width: 110px;
+    }
+    .important {
+        font-size: 15px;
+    }
+}
+
+.ticket-entry {
+    background-color: white;
+    li {
+        padding: 10px;
+        i {
+            font-size: 26px;
+        }
+    }
+    ul{
+        margin: 0px;
+        padding: 0px;
+    }
+    input {
+        width: 95%;
+        padding: 10px;
+        background-color: white;
+    }
+}
+
+.ticket-actions {
+    display: block;
+    width: 70px;
+    text-align: right;
+    padding: 13px;
+    letter-spacing: 2px;
+    cursor: pointer;
+}

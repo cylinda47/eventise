@@ -7,17 +7,20 @@ class Event < ApplicationRecord
     validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
     validate :end_date_after_start_date?
+
     
     belongs_to :creator,
-        primary_key: :id,
-        foreign_key: :organizer_id,
-        class_name: :User
-
+    primary_key: :id,
+    foreign_key: :organizer_id,
+    class_name: :User
+    
     has_many :tickets,
-        primary_key: :id,
-        foreign_key: :event_id,
-        class_name: :Ticket
-
+    primary_key: :id,
+    foreign_key: :event_id,
+    class_name: :Ticket
+    
+    accepts_nested_attributes_for :tickets
+    
     has_many :orders,
         through: :tickets,
         source: :orders

@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import EventDetail from './event_detail';
 import { createEvent, fetchEvent } from '../../actions/event_actions';
+import { createOrder } from '../../actions/ticket_actions';
 
 
 const mapStateToProps = (state, ownProps) => {
@@ -14,7 +15,8 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    fetchEvent: (eventId) => dispatch(fetchEvent(eventId))
+    fetchEvent: (eventId) => dispatch(fetchEvent(eventId)),
+    createOrder: (order) => dispatch(createOrder(order))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventDetail);

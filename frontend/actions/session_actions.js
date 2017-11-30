@@ -1,5 +1,6 @@
 import * as SessionAPIUtil from '../util/session_api_util';
 import * as UserAPIUtil from '../util/user_api_util';
+import * as BookmarkAPIUtil from '../util/bookmark_api_util';
 
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
@@ -42,3 +43,16 @@ export const updateUser = user => dispatch => (
         .then(user => dispatch(receiveCurrentUser(user)),
         errors => dispatch(receiveUserErrors(errors.responseJSON)))
 );
+
+export const addBookmark = bookmark => dispatch => (
+    BookmarkAPIUtil.addBookmark(user)
+        .then(user => dispatch(receiveCurrentUser(user)),
+        errors => dispatch(receiveUserErrors(errors.responseJSON)))
+)
+
+export const removeBookmark = eventId => dispatch => (
+    BookmarkAPIUtil.removeBookmark(eventId)
+        .then(user => dispatch(receiveCurrentUser(user)),
+        errors => dispatch(receiveUserErrors(errors.responseJSON)))
+)
+

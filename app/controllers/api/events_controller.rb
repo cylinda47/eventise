@@ -11,14 +11,32 @@ class Api::EventsController < ApplicationController
     end
 
     def create
-        @event = Event.new(event_params)
-        if @event.save
-            render "api/events/show"
-        else
-            render json: @event.errors.full_messages, status: 422
+        tickets_params = event_params.delete(:tickets_attributes)
+        @event = Event.new(event_params.except(:tickets_attributes))  
+        @ticket_errors = {}
+        begin
+            Event.transaction do
+                @event.save!
+                @event.tickets = tickets_params.to_h.values.map.with_index do |ticket, idx|
+                    ticket = Ticket.new(ticket)
+                    # if !ticket.valid?
+                    #     @ticket_errors[idx] = ticket.errors.full_messages
+                    # end
+                end
+            end  
+            if Event.find(@event.id)
+                render "api/events/show"
+            end
+        rescue ActiveRecord::ActiveRecordError => errors
+  
+            if errors.message.index('ticket') || tickets_params.length < 1
+                render json: ["Invalid Ticket params"], status: 422
+            else
+                render json: [errors.message], status: 422
+            end
         end
     end
-    
+
     def update
         @event = Event.find(params[:event][:id])
         if @event.update_attributes(event_params)
@@ -39,8 +57,13 @@ class Api::EventsController < ApplicationController
 
     private
 
+    def render_error
+        render json: @event.errors.full_messages, status: 422
+    end
+
     def event_params
         params.require(:event).permit(
+            :id,
             :title,
             :description,
             :is_online_event,
@@ -51,7 +74,9 @@ class Api::EventsController < ApplicationController
             :end_time,
             :organizer_id,
             :organizer,
-            address: []
+            address: [],
+            tickets_attributes: [:id, :name, :price, :quantity, :event_id, :_destroy]
         )
     end
+
 end

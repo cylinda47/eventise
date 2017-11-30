@@ -1,13 +1,35 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import TicketList from './ticket_list';
+import Modal from 'react-modal';
+import ModalStyle from '../../util/ticket_modal_style';
 
 export default class EventDetail extends React.Component {
     constructor(props){
         super(props);
+        this.state = { modalOpen: false };
+        this.onModalClose = this.onModalClose.bind(this);
+        this.onModalOpen = this.onModalOpen.bind(this);
+        this.handleModalClick = this.handleModalClick.bind(this);
     }
 
     componentDidMount() {
         this.props.fetchEvent(this.props.eventId);
+    }
+
+    handleModalClick(event) {
+        this.setState({
+            modalOpen: true
+        });
+    }
+
+    onModalClose() {
+        this.setState({ modalOpen: false });
+        ModalStyle.content.opacity = 0;
+    }
+
+    onModalOpen() {
+        ModalStyle.content.opacity = 100;
     }
     
     render(){
@@ -17,6 +39,7 @@ export default class EventDetail extends React.Component {
         const timeOptions1 = { hour: 'numeric', minute: 'numeric', hour12: false }
         const timeOptions2 = { hour: 'numeric', minute: 'numeric', timeZoneName: 'short', hour12: false }
         if (event) {
+            let tickets = event.tickets ? Object.values(event.tickets) : [];
             return(
                 <div>
                     <div
@@ -33,7 +56,7 @@ export default class EventDetail extends React.Component {
                                     {new Date(event.start_date).toLocaleString('en-US', { month: 'short'} )}
                                 </div>
                                 <div className="event-detail-header-date">
-                                    {new Date(event.start_date).toLocaleString('en-US', { month: 'numeric'} )}
+                                    {new Date(event.start_date).toLocaleString('en-US', { day: 'numeric'} )}
                                 </div>
                                 <div className="event-detail-header-title">
                                     {event.title}
@@ -45,7 +68,7 @@ export default class EventDetail extends React.Component {
                         </div>
                         <div className="event-detail-register-bar">
                             <i className="fa fa-bookmark-o" aria-hidden="true" />
-                            <button>Register</button>
+                            <button onClick={this.handleModalClick}>Register</button>
                         </div>
                         <div className="event-detail-content">
                             <div className="event-detail-content-main">
@@ -94,6 +117,18 @@ export default class EventDetail extends React.Component {
                         </div>
                         : ""}
                     </div>
+                    <Modal
+                        isOpen={this.state.modalOpen}
+                        onRequestClose={this.onModalClose}
+                        style={ModalStyle}
+                        onAfterOpen={this.onModalOpen}>
+                    <TicketList
+                        tickets={tickets}
+                        event={event}
+                        currentUserId={currentUserId}
+                        createOrder={this.props.createOrder}
+                        onModalClose={this.onModalClose}/>
+                    </Modal>
                 </div>
             )
         }else{

@@ -1,0 +1,195 @@
+.ticket-list {
+    width: 100%;
+    background-color: #f8f8fa;
+    position: ticket-list;
+    font-family: 'Nunito', sans-serif;
+}
+
+.ticket-list-container {
+    height: 298px;
+    overflow: scroll;
+}
+
+.ticket-list-item {
+    margin-top: 25px;
+    margin-right: auto;
+    margin-bottom: 0;
+    margin-left: auto;
+    width: 85%;
+    padding:15px 25px;
+    border-left: 15px solid #0093D7;
+    display: wrap;
+    flex-wrap: wrap;
+    div {
+        display: block;
+        padding: 5px;
+    }
+    position: relative;
+    background-color: white;
+    box-shadow: 0 5px 5px -5px $gray;
+}
+
+.ticket-list-item-name {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.ticket-list-item-price {
+    color: $dark-gray;
+}
+
+.ticket-list-dropdown {
+    position: absolute;
+    padding: 15px;
+    width: 55px;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right;
+    -webkit-appearance: none;
+    background-position-x: 55px;
+    margin: 0 25px;
+}
+
+.ticket-list-header {
+    padding: 22px 15px 20px 15px;
+    position: relative;
+    div:nth-child(1) {
+        text-align: center;
+        font-size: 22px;
+        font-weight: 700;
+    }
+    div:nth-child(2) {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 0;
+        padding: 0;
+        margin: 5px 15px;
+    }
+    box-shadow: 0 5px 5px -5px $gray;
+}
+
+.ticket-list-checkout-bar {
+    position: absolute;
+    border-top: 1px solid $gray;
+    padding: 10px 20px;
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    bottom: 0;
+    width: 100%;
+    div {
+        flex: auto;
+        width: 100%;
+        text-align: left;
+        line-height: 20px;
+        display: flex;
+        align-items: center;
+        color: $dark-gray;
+        letter-spacing: 0.8px;
+    }
+    button {
+        margin-left: 65px;
+        background-color: $green;
+        width: 100px;
+        font-size: 14px;
+        padding: 13px 15px;
+        text-align: center;
+        text-transform: uppercase;
+        color: white;
+        letter-spacing: 1px;
+        font-family: 'Nunito', sans-serif;
+        font-weight: 400;
+        transition: 300ms linear;
+    }
+    button:hover {
+        background-color: $darker-green;
+    }
+    i {
+        font-size: 30px;
+        cursor: pointer;
+    }
+}
+
+.checkout-form {
+    padding: 25px;
+    p {
+        text-transform: uppercase;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.8px;
+    }
+    overflow: scroll;
+    height: 298px;
+}
+
+.checkout-title {
+    font-size: 24px;
+    margin: 10px 0px;
+}
+
+.checkout-event-details,
+.checkout-order-details,
+.checkout-event-total {
+    background-color: white;
+    border-left: 10px solid $tiffany;
+    width: 94%;
+    padding: 15px;
+    margin-top: 10px;
+}
+
+.checkout-order-details {
+    border-left: 10px solid $dark-gray;
+    margin-bottom: 50px;
+}
+
+.checkout-event-total {
+    border-left: 10px solid #f66730;
+}
+
+.checkout-order-header,
+.checkout-order-tickets {
+    display: flex;
+    div {
+        flex: 1;
+        padding: 10px;
+    }
+}
+
+.checkout-order-header div {
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.checkout-order-confirm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    div {
+        margin: 10px;
+    }
+    div:nth-child(2){
+        font-size: 28px;
+        margin: 0px;
+    }
+    span {
+        font-size: 18px;
+        font-weight: 700;
+    }
+    img {
+        width: 150px;
+    }
+}
+
+.ticket-list-soldout {
+    position: absolute;
+    padding: 10px;
+    width: 90px;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    margin: 0 25px;
+    font-weight: 700;
+}
