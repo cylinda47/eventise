@@ -27,6 +27,10 @@ export default class TicketList extends React.Component {
         this.goToCheckout = this.goToCheckout.bind(this);
     }
 
+    componentDidUpdate(){
+
+    }
+
     showQuantity(quantity){
         const qty_arr = [];
         for(let i=0;i <= quantity;i++){
@@ -38,7 +42,8 @@ export default class TicketList extends React.Component {
     setQuantity(idx){
         return event => {
             let newTickets = merge([], this.state.tickets);
-            let quantity = parseInt($(`#dropdown-${idx} option:selected`).text());
+            let quantity = parseInt($(`#dropdown-${idx} option:selected`).val());
+            console.log(quantity);
             newTickets[idx]['quantity'] = quantity
             newTickets[idx]['ticket_id'] = this.props.tickets[idx].id;
             let totalQty = 0;
@@ -57,7 +62,9 @@ export default class TicketList extends React.Component {
                 if (i === tickets.length-1) {
                     this.props.createOrder(tickets[i])
                 } else {
-                    this.props.createOrder(tickets[i]).then(this.goToConfirm, err => console.log(err))
+                    this.props.createOrder(tickets[i])
+                    .then(this.goToConfirm)
+                    .then(this.props.fetchEvent(this.props.event.id))
                 }
             }
         }
@@ -91,14 +98,14 @@ export default class TicketList extends React.Component {
         }else{
             return(
                 <div className="checkout-form">
-                    <p>Please review your order.</p>
+                    <p>Please review your order :</p>
                     <div className="checkout-event-details">
                         <div className="checkout-title">{event.title}</div>
                         <div className="checkout-date">{new Date(event.start_date).toLocaleString('en-US', dateOptions1)}</div>
                     </div>
                     <div className="checkout-event-total">
                         <div className="checkout-title">Summary</div>
-                        <div>You have ordered a total amount of ${totalPrice}.00 for {totalQty} tickets.</div>
+                        <div>You have added a total amount of ${totalPrice}.00 for {totalQty} tickets to your basket.</div>
                     </div>
                     <div className="checkout-order-details">
                         <div className="checkout-order-header">
@@ -144,10 +151,10 @@ export default class TicketList extends React.Component {
                             <div className="ticket-list-item-price">$ {ticket.price}0</div>
 
                             {ticket.remaining_qty < 1 ? <p className="ticket-list-soldout">SOLD OUT</p> :
-                                <select id={`dropdown-${index}`} className="ticket-list-dropdown" onChange={this.setQuantity(index)}>
+                                <select value={this.state.tickets[index].quantity} id={`dropdown-${index}`} className="ticket-list-dropdown" onChange={this.setQuantity(index)}>
                                     {
                                         this.showQuantity(ticket.remaining_qty).map((qty, index) =>
-                                            <option key={index}>{qty}</option>
+                                            <option value={qty} key={index}>{qty}</option>
                                         )
                                     }
                                 </select>

@@ -45,7 +45,7 @@ export const updateUser = user => dispatch => (
 );
 
 export const addBookmark = bookmark => dispatch => (
-    BookmarkAPIUtil.addBookmark(user)
+    BookmarkAPIUtil.addBookmark(bookmark)
         .then(user => dispatch(receiveCurrentUser(user)),
         errors => dispatch(receiveUserErrors(errors.responseJSON)))
 )

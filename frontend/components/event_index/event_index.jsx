@@ -17,7 +17,7 @@ class EventIndex extends React.Component {
                 <SearchBackground />
                 <EventIndexItem
                     currentUser={this.props.currentUser}
-                    removeBookmark={this.props.removerBookmark}
+                    removeBookmark={this.props.removeBookmark}
                     addBookmark={this.props.addBookmark}
                     events={this.props.events}
                     fetchEvents={this.props.fetchEvents}

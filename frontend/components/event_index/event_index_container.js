@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import EventIndex from './event_index';
 import { fetchEvents } from '../../actions/event_actions';
+import { addBookmark, removeBookmark } from '../../actions/session_actions';
 
 const mapStateToProps = state => ({
     events: Object.values(state.entities.events),

@@ -96,7 +96,7 @@ export default class SessionForm extends React.Component {
             )
         } else if (errors.loginForm) {
             if($('.login-error-message').length > 0) return;
-                $('p:first').addClass('input-error').after(`<p class="login-error-message">${errors.loginForm}</p>`);
+                $('p#signup').addClass('input-error').after(`<p class="login-error-message">${errors.loginForm}</p>`);
         }
     }
 
@@ -104,11 +104,14 @@ export default class SessionForm extends React.Component {
         const { signup } = this.state;
         return(
             <div className="session">
+                <div className="exit-icon">
+                    <i className="fa fa-times" aria-hidden="true" onClick={this.props.onModalClose} />
+                </div>
                 <section className="session-form">
                     <div>
                         {signup ? "" : <center><img src="https://image.flaticon.com/icons/svg/320/320416.svg"/></center>}
                         <h1>{ signup ? "Welcome to Eventize" : "Let's get started" }</h1>
-                        <p>{ signup ? "We'd like to know a bit more about you." : 
+                        <p id="signup">{ signup ? "We'd like to know a bit more about you." : 
                             "Enter your email and password to continue."}</p>
                     </div>
                     <div className="session-input-fields">

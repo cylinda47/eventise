@@ -9,11 +9,11 @@ export default class SearchBackground extends React.Component {
             var i;
             var x = document.getElementsByClassName("mySlides");
             for (i = 0; i < x.length; i++) {
-                x[i].style.display = "none";
+                $(x[i]).css({ display: "none" });
             }
             myIndex++;
             if (myIndex > x.length) { myIndex = 1 }
-            x[myIndex - 1].style.display = "block";
+            $(x[myIndex - 1]).css({ display: "block" });
             setTimeout(carousel, 6000);
         }
     }

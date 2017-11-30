@@ -71,8 +71,15 @@ class NavBar extends React.Component {
                     <nav className="nav-item-blue" onClick={this.navigateToCreate} >Create Event</nav>
                     {   currentUser ?
                         <div className="nav-item-dropdown-top">
-                            <nav className="nav-item-user"><i className="fa fa-user-circle" aria-hidden="true"></i>  {currentUser.firstname}</nav>
-                            <nav className="nav-item-dropdown" onClick={this.props.logout}>LOGOUT</nav>
+                            <Link to="/dashboard"><nav className="nav-item-user"><i className="fa fa-user-circle" aria-hidden="true"></i>  {currentUser.firstname}</nav></Link>
+                            <nav className="nav-item-dropdown-long" id="hard-reset">
+                                <label>
+                                    <Link to="/dashboard">
+                                        Saved<div>{currentUser.bookmarked_event_ids.length}</div>
+                                    </Link>
+                                </label>
+                                <label onClick={this.props.logout}>LOGOUT</label>
+                            </nav>
                         </div>
                         :
                         <div className="nav-item-dropdown-top">
@@ -86,9 +93,6 @@ class NavBar extends React.Component {
                     onRequestClose={this.onModalClose}
                     style={ModalStyle}
                     onAfterOpen={this.onModalOpen}>
-                    <div className="exit-icon">
-                        <i className="fa fa-times" aria-hidden="true" onClick={this.onModalClose} />
-                    </div>
                     <SessionForm
                         login={ login }
                         signup={ signup }

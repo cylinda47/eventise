@@ -58,7 +58,47 @@
     text-align: right;
 }
 
-.nav-item-dropdown-top:hover .nav-item-dropdown {
+#hard-reset {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.nav-item-dropdown-long {
+    position: absolute;
+    vertical-align: center;
+    display: none;
+    z-index: 1;
+    background-color: white;
+    right: 0px;
+    label {
+        padding: 19px;
+        width: 125px;
+        text-align: left;
+        background-color: white;
+        display: block;
+        border-bottom: 1px solid $lightest-gray;
+        cursor: pointer;
+        div {
+            margin-left: 40px;
+            display: inline;
+            background-color: $theme-color;
+            padding: 10px 11px;
+            border-radius: 50%;
+            color: white;
+            font-weight: 700;
+        }
+    }
+    label:hover {
+        background-color: $lightest-gray;
+    }
+}
+
+.nav-item-dropdown-top:hover .nav-item-dropdown, {
+    display: block;
+}
+
+.nav-item-dropdown-top:hover .nav-item-dropdown-long {
     display: block;
 }
 

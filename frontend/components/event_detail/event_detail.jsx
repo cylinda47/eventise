@@ -2,7 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import TicketList from './ticket_list';
 import Modal from 'react-modal';
-import ModalStyle from '../../util/ticket_modal_style';
+import TicketModalStyle from '../../util/ticket_modal_style';
+import SessionForm from '../session/session_form';
+import SessionModalStyle from '../../util/modal_style';
+
+
 
 export default class EventDetail extends React.Component {
     constructor(props){
@@ -24,16 +28,19 @@ export default class EventDetail extends React.Component {
     }
 
     onModalClose() {
+        const modalStyle = this.props.currentUserId ? TicketModalStyle : SessionModalStyle;
         this.setState({ modalOpen: false });
-        ModalStyle.content.opacity = 0;
+        modalStyle.content.opacity = 0;
     }
 
     onModalOpen() {
-        ModalStyle.content.opacity = 100;
+        const modalStyle = this.props.currentUserId ? TicketModalStyle : SessionModalStyle;
+        modalStyle.content.opacity = 100;
     }
     
     render(){
-        const { event, currentUserId } = this.props;
+        const { event, currentUserId, login, signup, errors } = this.props;
+        const modalStyle = currentUserId ? TicketModalStyle : SessionModalStyle;
         const dateOptions1 = { weekday: 'short', month: 'long', day: 'numeric', year: 'numeric' };
         const dateOptions2 = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' };
         const timeOptions1 = { hour: 'numeric', minute: 'numeric', hour12: false }
@@ -120,14 +127,23 @@ export default class EventDetail extends React.Component {
                     <Modal
                         isOpen={this.state.modalOpen}
                         onRequestClose={this.onModalClose}
-                        style={ModalStyle}
+                        style={modalStyle}
                         onAfterOpen={this.onModalOpen}>
+                    { currentUserId ?
                     <TicketList
                         tickets={tickets}
                         event={event}
+                        fetchEvent={this.props.fetchEvent}
                         currentUserId={currentUserId}
                         createOrder={this.props.createOrder}
                         onModalClose={this.onModalClose}/>
+                    :
+                    <SessionForm
+                        login={login}
+                        signup={signup}
+                        errors={errors}
+                        onModalClose={this.onModalClose} />
+                    }
                     </Modal>
                 </div>
             )
