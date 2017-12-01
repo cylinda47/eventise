@@ -45,7 +45,7 @@ export default class TicketList extends React.Component {
             let totalPrice = 0;
             newTickets.forEach(ticket => totalQty += ticket.quantity)
             newTickets.forEach((ticket, i) => totalPrice += (ticket.quantity * this.props.tickets[i].price))
-            this.setState({ totalQty, totalPrice, tickets: newTickets }, () => console.log(this.state));
+            this.setState({ totalQty, totalPrice, tickets: newTickets });
             
         }
     }
