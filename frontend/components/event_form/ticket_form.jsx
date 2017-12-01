@@ -9,8 +9,8 @@ class TicketInput extends React.Component {
         return <div index={this.props.index}>
             <ul>
                 <li><input index={this.props.index} id="ticket-name" type="text" onChange={this.props.handleChange} /></li>
-                <li><input index={this.props.index} id="ticket-price" type="number" onChange={this.props.handleChange} /></li>
                 <li><input index={this.props.index} id="ticket-quantity" type="number" onChange={this.props.handleChange} /></li>
+                <li><input index={this.props.index} id="ticket-price" type="number" onChange={this.props.handleChange} /></li>
                 <li>
                     <div className="ticket-actions">
                         <i className="fa fa-plus" aria-hidden="true" onClick={this.props.addNewTicket}></i>  <i className="fa fa-trash-o" aria-hidden="true" onClick={this.props.deleteTicket} index={this.props.index}></i>
