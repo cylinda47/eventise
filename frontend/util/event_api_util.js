@@ -40,3 +40,18 @@ export const deleteEvent = eventId => (
     })
 );
 
+export const createTicket = ticket => (
+    $.ajax({
+        method: 'POST',
+        url: `/api/tickets`,
+        data: ticket
+    })
+)
+
+export const updateCategory = (eventId, category) => (
+    $.ajax({
+        method: 'PATCH',
+        url: `/api/categories/${eventId}`,
+        data: category
+    })
+);

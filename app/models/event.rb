@@ -8,6 +8,7 @@ class Event < ApplicationRecord
 
     validate :end_date_after_start_date?
 
+    has_many :categories
     
     belongs_to :creator,
     primary_key: :id,

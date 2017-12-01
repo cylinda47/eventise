@@ -41,6 +41,11 @@ export default class EventIndexItem extends React.Component {
                             </li>
                             </Link>
                             <li className="event-index-item-options">
+                                <div>
+                                    {event.category_names.filter(el => el.length > 0).map((name, idx) => 
+                                        <Link key={idx} to={`/categories/${name}`}>#{name.replace("_", "&")}</Link>
+                                    )}
+                                </div>
                                  <div>
                                     {!currentUser || currentUser.bookmarked_event_ids.indexOf(event.id) < 0 ?
                                         <i className="fa fa-bookmark-o" onClick={this.add(event.id)} aria-hidden="true"></i> :

@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import ReactQuill from 'react-quill'; // ES6
 import ImageUpload from './image_upload';
 import TicketForm from './ticket_form';
+import CategoryForm from './category_form';
 
 class EventForm extends React.Component {
 
@@ -23,7 +24,8 @@ class EventForm extends React.Component {
             addressOpen: false,
             imageFile: '',
             loading: true,
-            tickets: [{ name: '', price: null, quantity: null }]
+            tickets: [{ name: '', price: null, quantity: null }],
+            category_names: ["", ""]
         };
         this.state = this.props.formType === "create" ?
             Object.assign({}, this._nullState)
@@ -44,12 +46,15 @@ class EventForm extends React.Component {
         this.setEventState = this.setEventState.bind(this);
         this.toggleLoading = this.toggleLoading.bind(this);
         this.handleTicket = this.handleTicket.bind(this);
+        this.setCategory = this.setCategory.bind(this);
+        
     }
 
     componentDidMount() {
         if (this.props.formType === 'update'){
             // this.setState({ loading: true })
             this.props.fetchEvent(this.props.eventId).then(this.setEventState).then(this.toggleLoading);
+            $('.event-error-message').remove();
         }
     }
     
@@ -58,7 +63,7 @@ class EventForm extends React.Component {
             this.clearForm();
             if (nextProps.formType === 'update'){
                 this.setState({ loading: true });
-                this.props.fetchEvent(this.props.eventId).then(this.toggleLoading);
+                this.props.fetchEvent(nextProps.eventId).then(this.setEventState).then(this.toggleLoading);
             }
         }
     }
@@ -72,6 +77,7 @@ class EventForm extends React.Component {
     }
 
     clearForm(){
+        $('.event-error-message').remove();
         this.setState(this._nullState);
         this.setState({ loading: false });
     }
@@ -91,8 +97,6 @@ class EventForm extends React.Component {
             let address = Object.assign(["", "", "", ""], this.state.address);
             address[idx] = event.currentTarget.value;
             this.setState({ address });
-            console.log(address);
-            console.log(this.state);
         };
     }
 
@@ -121,6 +125,10 @@ class EventForm extends React.Component {
         this.setState({ tickets });
     }
 
+    setCategory(category_names) {
+        this.setState({ category_names });
+    }
+
     handleSubmit(event) {
         const formData = new FormData();
         if (this.props.formType === 'update') {
@@ -140,32 +148,46 @@ class EventForm extends React.Component {
         formData.append("event[organizer]", this.state.organizer);
         formData.append("event[organizer_id]", this.state.organizer_id);
         formData.append("event[image]", this.state.imageFile);
-        for (let i = 0; i < this.state.tickets.length; i++) {
-            formData.append("event[tickets_attributes][" + i + "][name]", this.state.tickets[i]['name']);
-            formData.append("event[tickets_attributes][" + i + "][price]", this.state.tickets[i]['price']);
-            formData.append("event[tickets_attributes][" + i + "][quantity]", this.state.tickets[i]['quantity']);
+        if (this.props.formType === 'create') {
+            formData.append("event[category_names][]", this.state.category_names[0]);
+            formData.append("event[category_names][]", this.state.category_names[1]);
+            for (let i = 0; i < this.state.tickets.length; i++) {
+                formData.append("event[tickets_attributes][" + i + "][name]", this.state.tickets[i]['name']);
+                formData.append("event[tickets_attributes][" + i + "][price]", this.state.tickets[i]['price']);
+                formData.append("event[tickets_attributes][" + i + "][quantity]", this.state.tickets[i]['quantity']);
+            }
+            this.props.submitForm(formData)
+                .then((res) => this.props.history.push(`/events/${res.event.id}`), this.handleErrors);
+        }else{
+            const category = { category: this.state.category_names }
+            this.props.submitForm(formData)
+                .then(null, this.handleErrors)
+                .then(() => this.props.updateCategory(this.state.id, category), this.handleErrors)
+                .then((res) => this.props.history.push(`/events/${res.event.id}`), this.handleErrors);
         }
-        this.props.submitForm(formData)
-            .then((res) => this.props.history.push(`/events/${res.event.id}`), this.handleErrors);
     }
 
     handleErrors() {
-        let { errors } = this.props;
-        errors = errors[0].replace("Validation failed: ", "").split(",");
+        const { errors } = this.props;
         $('.event-error-message').remove();
-        if (errors.length > 0) {
-            if ($('.event-error-message').length > 0) return;
-            $('div.event-form input').each(function () {
-                const err = errors.filter((el, idx) => el.toLowerCase().indexOf(this.id.replace("_", " ")) > -1);
-                if (err.length > 0) {
-                    if (err.indexOf('ticket')) {
-                        $('div.ticket-create-container').before(`<span class="event-error-message">${err}</span>`);
-                    }
-                    $(this).after(`<span class="event-error-message">${err}</span>`);
-                }
+        let err;
+        $('div.event-form input').each(function () {
+            err = errors[0].filter((el, idx) => el.toLowerCase().indexOf(this.id.replace("_", " ")) > -1);
+            if (err.length > 0) {
+                $(this).after(`<span class="event-error-message">${err}</span>`);
             }
-            )
-        } 
+        })
+        if (errors[1].length > 0) {
+        
+            $('input#ticket-name').each(function (idx) {
+                if (errors[1][idx].length > 0) {
+                    $(this).after(`<span class="event-error-message">${errors[1][idx]}</span>`);
+                }
+            })
+        }
+        if (errors[2].length > 0) {
+            $('div.category-container').after(`<span class="event-error-message">${errors[2][0]}</span>`);
+        }
     }
 
     render(){
@@ -286,10 +308,17 @@ class EventForm extends React.Component {
                             placeholder="Who's organizing this event?"
                             value={this.state.organizer}
                             onChange={this.handleInput} />
+                        { this.props.formType === 'create' ?
                         <TicketForm
                             tickets={this.state.tickets}
                             nullTicket={this._nullState.tickets[0]}
                             handleTicket={this.handleTicket} />
+                        : "" }
+                        <CategoryForm
+                            formType={this.props.formType}
+                            setCategory={this.setCategory}
+                            category_names={this.state.category_names}
+                        />
                         <center>
                             <button onClick={this.handleSubmit} className="event-form-submit">
                                 {formType === 'create' ? "Make your event live" : "Update event"}

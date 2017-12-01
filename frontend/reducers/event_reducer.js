@@ -1,4 +1,4 @@
-import { RECEIVE_EVENT, RECEIVE_EVENTS } from '../actions/event_actions';
+import { RECEIVE_EVENT, RECEIVE_EVENTS, RECEIVE_CATEGORY_EVENTS } from '../actions/event_actions';
 import merge from 'lodash/merge';
 
 export const eventReducer = (state = {} , action) => {
@@ -10,6 +10,8 @@ export const eventReducer = (state = {} , action) => {
             let newState = merge({}, state);
             newState[action.event.id] = action.event;
             return newState;
+        case RECEIVE_CATEGORY_EVENTS:
+            return merge({}, action.events);
         default:
             return state;
     }

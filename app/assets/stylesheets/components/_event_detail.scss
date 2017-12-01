@@ -94,8 +94,22 @@
     border-top: 1px solid $gray;
     border-bottom: 1px solid $gray;
     padding: 15px 15px 15px 30px;
+    div {
+        display: flex;
+        justify-content: space-between;
+    }
     i {
         font-size: 30px;
+        cursor: pointer;
+    }
+    a {
+        text-transform: capitalize;
+        font-size: 14px;
+        font-weight: 700;
+        padding: 10px;
+        background-color: $lightest-gray;
+        border-radius: 50px;
+        margin-left: 15px;
     }
     button {
         background-color: $green;

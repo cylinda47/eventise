@@ -15,12 +15,22 @@ export default class EventDetail extends React.Component {
         this.onModalClose = this.onModalClose.bind(this);
         this.onModalOpen = this.onModalOpen.bind(this);
         this.handleModalClick = this.handleModalClick.bind(this);
+        this.add = this.add.bind(this);
+        this.remove = this.remove.bind(this);
     }
 
     componentDidMount() {
         this.props.fetchEvent(this.props.eventId);
     }
 
+    add(eventId) {
+        return e => this.props.addBookmark({ event_id: eventId, user_id: this.props.currentUser.id })
+    }
+
+    remove(eventId) {
+        return e => this.props.removeBookmark(eventId);
+    }
+    
     handleModalClick(event) {
         this.setState({
             modalOpen: true
@@ -39,7 +49,7 @@ export default class EventDetail extends React.Component {
     }
     
     render(){
-        const { event, currentUserId, login, signup, errors } = this.props;
+        const { event, currentUserId, currentUser, login, signup, errors } = this.props;
         const modalStyle = currentUserId ? TicketModalStyle : SessionModalStyle;
         const dateOptions1 = { weekday: 'short', month: 'long', day: 'numeric', year: 'numeric' };
         const dateOptions2 = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' };
@@ -74,7 +84,17 @@ export default class EventDetail extends React.Component {
                             </div>
                         </div>
                         <div className="event-detail-register-bar">
-                            <i className="fa fa-bookmark-o" aria-hidden="true" />
+                        <div>
+                            {!currentUser || currentUser.bookmarked_event_ids.indexOf(event.id) < 0 ?
+                                <i className="fa fa-bookmark-o" onClick={this.add(event.id)} aria-hidden="true"></i> :
+                                <i className="fa fa-bookmark" onClick={this.remove(event.id)} aria-hidden="true"></i>
+                            }
+                            
+                                {event.category_names.filter(el => el.length > 0).map((name, idx) =>
+                                    <Link key={idx} to={`/categories/${name}`}>{name.replace("_", "&")}</Link>
+                                )}
+                            
+                        </div>
                             <button onClick={this.handleModalClick}>Register</button>
                         </div>
                         <div className="event-detail-content">

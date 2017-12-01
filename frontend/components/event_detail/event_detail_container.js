@@ -3,6 +3,7 @@ import EventDetail from './event_detail';
 import { createEvent, fetchEvent } from '../../actions/event_actions';
 import { createOrder } from '../../actions/ticket_actions';
 import { login, logout, signup } from '../../actions/session_actions';
+import { addBookmark, removeBookmark } from '../../actions/session_actions';
 
 const mapStateToProps = (state, ownProps) => {
     const eventId = ownProps.match.params.eventId;
@@ -10,6 +11,7 @@ const mapStateToProps = (state, ownProps) => {
     return {
         event: state.entities.events[eventId],
         eventId,
+        currentUser,
         currentUserId: currentUser && currentUser.id
     };
 }
@@ -19,7 +21,9 @@ const mapDispatchToProps = dispatch => ({
     createOrder: (order) => dispatch(createOrder(order)),
     login: user => dispatch(login(user)),
     logout: () => dispatch(logout()),
-    signup: user => dispatch(signup(user))
+    signup: user => dispatch(signup(user)),
+    addBookmark: bookmark => dispatch(addBookmark(bookmark)),
+    removeBookmark: eventId => dispatch(removeBookmark(eventId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventDetail);

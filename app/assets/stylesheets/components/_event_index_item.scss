@@ -64,11 +64,22 @@
 .event-index-item-options {
     border-top: 1px solid $lightest-gray;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     div {
         border-left: 1px solid $lightest-gray;
         text-align: center;
         height: 40px;
         padding: 8px 3px 0px 15px;
+    }
+    div:first-child {
+        padding-left: 5px;
+        border: 0px;
+    }
+    a {
+        font-size: 14px;
+        margin-right: 5px;
+        color: $blue;
+        text-transform: capitalize;
+        height: 20px;
     }
 }

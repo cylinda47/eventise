@@ -1,8 +1,10 @@
 import * as EventAPIUtil from '../util/event_api_util';
+import * as CategoryAPIUtil from '../util/category_api_util';
 
 export const RECEIVE_EVENT = "RECEIVE_EVENT";
 export const RECEIVE_EVENTS = "RECEIVE_EVENTS";
 export const RECEIVE_EVENT_ERRORS = "RECEIVE_EVENT_ERRORS";
+export const RECEIVE_CATEGORY_EVENTS = "RECEIVE_CATEGORY_EVENTS";
 
 const receiveEvent = event => ({
     type: RECEIVE_EVENT,
@@ -13,6 +15,11 @@ const receiveEvents = events => ({
     type: RECEIVE_EVENTS,
     events
 });
+
+const receiveCategoryEvents = events => ({
+    type: RECEIVE_CATEGORY_EVENTS,
+    events
+})
 
 const receiveEventErrors = errors => ({
     type: RECEIVE_EVENT_ERRORS,
@@ -46,4 +53,22 @@ export const updateEvent = event => dispatch => (
 export const deleteEvent = eventId => dispatch => (
     EventAPIUtil.deleteEvent(eventId)
         .then((errors) => dispatch(receiveEventErrors(errors.responseJSON)))
+);
+
+export const fetchCategoryEvents = name => dispatch => (
+    CategoryAPIUtil.fetchCategoryEvents(name)
+        .then(events => dispatch(receiveCategoryEvents(events)),
+        errors => dispatch(receiveEventErrors(errors.responseJSON)))
+)
+
+export const createTicket = ticket => dispatch => (
+    EventAPIUtil.createTicket(ticket)
+        .then(event => dispatch(receiveEvent(event)),
+        errors => dispatch(receiveEventErrors(errors.responseJSON)))
+);
+
+export const updateCategory = (eventId, category) => dispatch => (
+    EventAPIUtil.updateCategory(eventId, category)
+        .then(event => dispatch(receiveEvent(event)),
+        errors => dispatch(receiveEventErrors(errors.responseJSON)))
 );

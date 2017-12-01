@@ -3,6 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 import SessionForm from '../session/session_form';
 import Modal from 'react-modal';
 import ModalStyle from '../../util/modal_style';
+import CategoryBar from '../category/category_bar';
 
 class NavBar extends React.Component {
     constructor(props){
@@ -17,6 +18,13 @@ class NavBar extends React.Component {
         this.handleDemoLogin = this.handleDemoLogin.bind(this);
         this.navigateToBrowse = this.navigateToBrowse.bind(this);
         this.navigateToCreate = this.navigateToCreate.bind(this);
+    }
+
+    componentDidMount() {
+        let width = $(window).width();
+        let leftWidth = width - 470
+        $(".nav-item-dropdown-category").width(width);
+        $(".nav-item-dropdown-category").css("left", `-${leftWidth}px`);
     }
 
     handleModalClick(event){
@@ -67,7 +75,12 @@ class NavBar extends React.Component {
 
                 </nav>
                 <div className="nav-items">
-                    <nav className="nav-item" onClick={this.navigateToBrowse} >Browse Events</nav>
+                    <div className="nav-item-dropdown-top">
+                        <nav className="nav-item" onClick={this.navigateToBrowse} >Browse Events</nav>
+                        <nav className="nav-item-dropdown-category" id="hard-reset">
+                            <CategoryBar />
+                        </nav>
+                    </div>
                     <nav className="nav-item-blue" onClick={this.navigateToCreate} >Create Event</nav>
                     {   currentUser ?
                         <div className="nav-item-dropdown-top">

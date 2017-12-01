@@ -94,11 +94,23 @@
     }
 }
 
+.nav-item-dropdown-category {
+    position: absolute;
+    vertical-align: center;
+    display: none;
+    z-index: 1;
+    background-color: white;
+}
+
 .nav-item-dropdown-top:hover .nav-item-dropdown, {
     display: block;
 }
 
 .nav-item-dropdown-top:hover .nav-item-dropdown-long {
+    display: block;
+}
+
+.nav-item-dropdown-top:hover .nav-item-dropdown-category {
     display: block;
 }
 

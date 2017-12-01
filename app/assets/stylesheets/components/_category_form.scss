@@ -1,0 +1,32 @@
+.category-form {
+    width: 100%;
+    margin-top: 30px;
+}
+
+.category-container {
+    display: flex;
+    justify-content: space-between;
+    text-transform: initial;
+    width: 85%;
+    margin: 0 auto;
+}
+
+.category-option {
+    select {
+        padding: 12px;
+        width: 140px;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 0;
+        background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right;
+        -webkit-appearance: none;
+        background-position-x: 140px;
+        margin: 25px 10px;
+    }
+}
+
+.category-choose {
+    display: flex;
+    align-items: center;
+    height: 50px;
+}

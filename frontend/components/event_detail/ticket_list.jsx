@@ -27,10 +27,6 @@ export default class TicketList extends React.Component {
         this.goToCheckout = this.goToCheckout.bind(this);
     }
 
-    componentDidUpdate(){
-
-    }
-
     showQuantity(quantity){
         const qty_arr = [];
         for(let i=0;i <= quantity;i++){
@@ -43,7 +39,6 @@ export default class TicketList extends React.Component {
         return event => {
             let newTickets = merge([], this.state.tickets);
             let quantity = parseInt($(`#dropdown-${idx} option:selected`).val());
-            console.log(quantity);
             newTickets[idx]['quantity'] = quantity
             newTickets[idx]['ticket_id'] = this.props.tickets[idx].id;
             let totalQty = 0;
