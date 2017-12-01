@@ -86,8 +86,8 @@ export default class TicketForm extends React.Component {
                         <div>
                             <ul>
                                 <li><input index="0" id="ticket-name" type="text" onChange={this.handleChange}/></li>
-                                <li><input index="0" id="ticket-price" type="number" onChange={this.handleChange} /></li>
-                                <li><input index="0" id="ticket-quantity" type="number" onChange={this.handleChange}/></li>
+                                <li><input index="0" id="ticket-quantity" type="number" onChange={this.handleChange} /></li>
+                                <li><input index="0" id="ticket-price" type="number" onChange={this.handleChange}/></li>
                                 <li>
                                     <div className="ticket-actions">
                                         <i className="fa fa-plus" aria-hidden="true" onClick={this.addNewTicket}></i>  <i className="fa fa-trash-o" aria-hidden="true"></i>
