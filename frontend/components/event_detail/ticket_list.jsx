@@ -27,14 +27,6 @@ export default class TicketList extends React.Component {
         this.goToCheckout = this.goToCheckout.bind(this);
     }
 
-    componentDidUpdate(nextProps) {
-        if (this.props.confirmOrder !== nextProps.confirmOrder) {
-            if (this.state.confirmOrder) {
-                this.props.fetchEvent(this.props.event.id)
-            }
-        }
-    }
-
     showQuantity(quantity){
         const qty_arr = [];
         for(let i=0;i <= quantity;i++){
@@ -64,10 +56,10 @@ export default class TicketList extends React.Component {
             if (tickets[i].quantity > 0) {
                 if (i === tickets.length-1) {
                     this.props.createOrder(tickets[i])
+                    .then(this.goToConfirm)
+                    .then(this.props.fetchEvent(this.props.event.id))
                 } else {
                     this.props.createOrder(tickets[i])
-                    .then(this.goToConfirm)
-                    // .then(this.props.fetchEvent(this.props.event.id))
                 }
             }
         }
