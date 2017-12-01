@@ -1,7 +1,7 @@
 import React from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-class EventIndexItem extends React.Component {
+export default class EventIndexItem extends React.Component {
     constructor(props) {
         super(props);
         this.add = this.add.bind(this);
@@ -61,5 +61,3 @@ class EventIndexItem extends React.Component {
         )
     }
 }
-
-export default withRouter(EventIndexItem)

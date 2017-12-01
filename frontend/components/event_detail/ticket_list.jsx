@@ -27,6 +27,14 @@ export default class TicketList extends React.Component {
         this.goToCheckout = this.goToCheckout.bind(this);
     }
 
+    componentDidUpdate(nextProps) {
+        if (this.props.confirmOrder !== nextProps.confirmOrder) {
+            if (this.state.confirmOrder) {
+                this.props.fetchEvent(this.props.event.id)
+            }
+        }
+    }
+
     showQuantity(quantity){
         const qty_arr = [];
         for(let i=0;i <= quantity;i++){
@@ -59,7 +67,7 @@ export default class TicketList extends React.Component {
                 } else {
                     this.props.createOrder(tickets[i])
                     .then(this.goToConfirm)
-                    .then(this.props.fetchEvent(this.props.event.id))
+                    // .then(this.props.fetchEvent(this.props.event.id))
                 }
             }
         }
@@ -143,7 +151,7 @@ export default class TicketList extends React.Component {
                     {tickets.map((ticket, index) =>
                         <div className="ticket-list-item" key={index}>
                             <div className="ticket-list-item-name">{ticket.name}</div>
-                            <div className="ticket-list-item-price">$ {ticket.price}0</div>
+                                <div className="ticket-list-item-price">$ {ticket.price}0 | Remaining: {ticket.remaining_qty}</div>
 
                             {ticket.remaining_qty < 1 ? <p className="ticket-list-soldout">SOLD OUT</p> :
                                 <select value={this.state.tickets[index].quantity} id={`dropdown-${index}`} className="ticket-list-dropdown" onChange={this.setQuantity(index)}>

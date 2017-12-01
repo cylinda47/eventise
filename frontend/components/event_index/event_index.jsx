@@ -1,7 +1,6 @@
 import React from 'react';
 import EventIndexItem from './event_index_item';
 import SearchBackground from './search_background';
-import { withRouter } from 'react-router-dom';
 
 class EventIndex extends React.Component {
     constructor(props){
@@ -28,4 +27,4 @@ class EventIndex extends React.Component {
     }
 }
 
-export default withRouter(EventIndex);
+export default EventIndex;

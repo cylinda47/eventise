@@ -19,7 +19,7 @@ export const App = () => {
                 <ProtectedRoute path="/events/new" component={EventFormContainer} />
                 <ProtectedRoute path="/dashboard" component={DashboardContainer} />
                 <Route exact path="/events/:eventId" component={EventDetailContainer} />
-                <Route path="/category/:categoryName" component={CategoryShowContainer} />
+                <Route exact path="/category/:categoryName" component={CategoryShowContainer} />
                 <ProtectedRoute path="/events/:eventId/edit" component={EventFormContainer} />
                 <Redirect to="/" component={EventIndexContainer} />
             </Switch>
