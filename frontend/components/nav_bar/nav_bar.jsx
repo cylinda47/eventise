@@ -69,7 +69,7 @@ class NavBar extends React.Component {
         return(
             <div className="nav-bar">
                 <nav className="nav-logo">
-                    <Link to="/">Eventize</Link>
+                    <Link to="/">Eventise</Link>
                 </nav>
                 <nav className="nav-search-bar">
 
