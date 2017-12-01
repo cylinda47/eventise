@@ -52,14 +52,19 @@ export default class TicketList extends React.Component {
 
     handleOrder(event) {
         const { tickets } = this.state;
-        for(let i=0; i<tickets.length;i++) {
-            if (tickets[i].quantity > 0) {
-                if (i === tickets.length-1) {
-                    this.props.createOrder(tickets[i])
+        const order_tickets = tickets.filter(ticket => ticket.quantity > 0)
+        if (order_tickets.length < 1) {
+            this.backToList();
+            return;
+        }
+        for(let i=0; i<order_tickets.length;i++) {
+            if (order_tickets[i].quantity > 0) {
+                if (i === order_tickets.length-1) {
+                    this.props.createOrder(order_tickets[i])
                     .then(this.goToConfirm)
                     .then(this.props.fetchEvent(this.props.event.id))
                 } else {
-                    this.props.createOrder(tickets[i])
+                    this.props.createOrder(order_tickets[i])
                 }
             }
         }
