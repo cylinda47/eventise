@@ -1,5 +1,6 @@
 import React from 'react';
 import NavBarContainer from './nav_bar/nav_bar_container';
+import Footer from './nav_bar/footer';
 import EventIndexContainer from './event_index/event_index_container';
 import EventFormContainer from './event_form/event_form_container';
 import EventDetailContainer from './event_detail/event_detail_container';
@@ -23,6 +24,9 @@ export const App = () => {
                 <ProtectedRoute path="/events/:eventId/edit" component={EventFormContainer} />
                 <Redirect to="/" component={EventIndexContainer} />
             </Switch>
+            <footer>
+                <Footer />
+            </footer>
         </div>
     )
 }

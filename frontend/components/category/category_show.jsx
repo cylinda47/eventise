@@ -54,7 +54,7 @@ class CategoryShow extends React.Component {
                                     <div className="category-show-item-options">
                                         <div>
                                             {event.category_names.filter(el => el.length > 0).map(name =>
-                                                 <Link key={name} to={`/categories/${name}`}>#{name.replace("_", "&")}</Link>
+                                                 <Link key={name} to={`/category/${name}`}>#{name.replace("_", "&")}</Link>
                                             )}
                                         </div>
                                         <div>

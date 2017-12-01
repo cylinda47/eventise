@@ -72,12 +72,10 @@
     div {
         border-left: 1px solid $lightest-gray;
         text-align: center;
-        // padding: 8px 3px 0px 15px;
+        vertical-align: -webkit-baseline-middle;
     }
     div:first-child {
-        // padding-left: 5px;
         border: 0px;
-
     }
     a {
         font-size: 14px;

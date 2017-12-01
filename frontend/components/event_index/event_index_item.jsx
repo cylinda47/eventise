@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
-export default class EventIndexItem extends React.Component {
+class EventIndexItem extends React.Component {
     constructor(props) {
         super(props);
         this.add = this.add.bind(this);
@@ -43,7 +43,7 @@ export default class EventIndexItem extends React.Component {
                             <li className="event-index-item-options">
                                 <div>
                                     {event.category_names.filter(el => el.length > 0).map((name, idx) => 
-                                        <Link key={idx} to={`/categories/${name}`}>#{name.replace("_", "&")}</Link>
+                                        <Link key={idx} to={`/category/${name}`} >#{name.replace("_", "&")}</Link>
                                     )}
                                 </div>
                                  <div>
@@ -61,3 +61,5 @@ export default class EventIndexItem extends React.Component {
         )
     }
 }
+
+export default withRouter(EventIndexItem);

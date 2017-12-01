@@ -54,6 +54,7 @@ export default class TicketList extends React.Component {
         const { tickets } = this.state;
         const order_tickets = tickets.filter(ticket => ticket.quantity > 0)
         if (order_tickets.length < 1) {
+            console.log(order_tickets)
             this.backToList();
             return;
         }
