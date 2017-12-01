@@ -10,6 +10,14 @@
     border-bottom: 1px solid $lightest-gray;
 }
 
+.search-header p {
+    padding: 40px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 50px;
+    font-weight: 300;
+    background-color: $bg-gray;
+}
+
 .search-background-container img {
     margin-top: -350px;
 }
