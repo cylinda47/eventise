@@ -103,13 +103,19 @@
         cursor: pointer;
     }
     a {
+        font-family: 'Roboto', sans-serif;
         text-transform: capitalize;
         font-size: 14px;
+        letter-spacing: 0.2px;
         font-weight: 700;
         padding: 10px;
         background-color: $lightest-gray;
         border-radius: 50px;
         margin-left: 15px;
+    }
+    a:hover {
+        background-color: $gray-black;
+        color: white;
     }
     button {
         background-color: $green;
