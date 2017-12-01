@@ -49,7 +49,7 @@ On event's detail show page, there is button linked to a pop-up ticket purchasin
 
 ## User Authentication
 
-When user click login from navigation bar, a modal containing the signup/login form pops up. It is a togglable form which keeps track of user's input when on a different form.
+When user click on the login button from navigation bar, a modal containing the signup/login form pops up. It is a togglable form which keeps track of user's input when on a different form.
 
 ![](http://g.recordit.co/WIc1PqyP74.gif)
 
