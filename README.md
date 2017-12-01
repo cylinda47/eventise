@@ -2,7 +2,7 @@
 
 [Eventise Live](https://eventise.herokuapp.com/)
 
-Eventise is a full-stack web application based on Eventbrite. It is created upon Ruby on Rails backend, PostgreSQL database, and React.js/Flux architecture frontend.
+Eventise is a full-stack web application based on Eventbrite. It is created with Ruby on Rails backend, PostgreSQL database, and React.js/Flux architecture frontend.
 
 ![](http://s3-us-west-1.amazonaws.com/eventise-dev/events/images/000/000/207/original/%E8%9E%A2%E5%B9%95%E6%88%AA%E5%9C%96_2017-12-01_14.28.43.png)
 
@@ -24,7 +24,7 @@ Eventise allows a user to create new events, which can either be a conventional 
 ![](http://g.recordit.co/ps3ok8WM5p.gif)
 
 ### Code: `transaction`
-Since the form holds all information (event, ticket, category) that has its own table in the database and model in the backend, a `transaction` block is used to ensure the event (and its relatives) will only be created when all the data on all 3 sections are validated.
+Since the form holds all information (event, ticket, category) which has its own table in the database and model in the backend, a `transaction` block is used to ensure that entries will only be created when they are all validated. Otherwise, a rollback will be triggered.
 
 ```javascript
 Event.transaction do
