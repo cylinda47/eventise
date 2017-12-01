@@ -21,11 +21,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const root = document.getElementById('root');
     ReactDOM.render(<Root store={store} />, root);
 
-    // window.fetchEvents = fetchEvents;
-    // window.createEvent = createEvent;
-    // window.updateEvent = updateEvent;
-    // window.deleteEvent = deleteEvent;
-    // window.updateUser = updateUser;
-    // window.getState = store.getState;
-    // window.dispatch = store.dispatch;
+    window.fetchEvents = fetchEvents;
+    window.createEvent = createEvent;
+    window.updateEvent = updateEvent;
+    window.deleteEvent = deleteEvent;
+    window.updateUser = updateUser;
+    window.getState = store.getState;
+    window.dispatch = store.dispatch;
 });
