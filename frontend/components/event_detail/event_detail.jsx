@@ -91,7 +91,7 @@ export default class EventDetail extends React.Component {
                             }
                             
                                 {event.category_names.filter(el => el.length > 0).map((name, idx) =>
-                                    <Link key={idx} to={`/categories/${name}`}>{name.replace("_", "&")}</Link>
+                                    <Link key={idx} to={`/category/${name}`}>{name.replace("_", "&")}</Link>
                                 )}
                             
                         </div>
