@@ -26,18 +26,22 @@ class EventIndexItem extends React.Component {
                     <div className="event-index-item-detail" key={event.id}>
                     <Link to={`/events/${event.id}`} key={event.id}>
                         <div className="item-thumbnail"
-                            style={{ backgroundImage: `url(${event.image_url})` }}
+                            style={{ backgroundImage: `url(${event.image_url.replace('http', 'https')})` }}
                                 >
                         </div>
                     </Link>
                         <ul>
                             <Link to={`/events/${event.id}`} key={event.id}>
                             <li className="event-index-item-date">
+                                <i className="fa fa-clock-o" aria-hidden="true"></i>
                                 {new Date(event.start_date).toLocaleString('en-US', dateOptions)} | {new Date(event.start_time).toLocaleString('en-US', timeOptions)}
                             </li>
                             <li className="event-index-item-title"><div>{event.title}</div></li>
                             <li className="event-index-item-location">
-                                <div>{event.is_online_event ? "Online event" : event.address[0]}</div>
+                                <div>
+                                    <i className="fa fa-map-marker" aria-hidden="true"></i>
+                                    {event.is_online_event ? "Online Event" : event.address[0]}
+                                </div>
                             </li>
                             </Link>
                             <li className="event-index-item-options">

@@ -52,21 +52,28 @@ export default class EventDetail extends React.Component {
         const { event, currentUserId, currentUser, login, signup, errors } = this.props;
         const modalStyle = currentUserId ? TicketModalStyle : SessionModalStyle;
         const dateOptions1 = { weekday: 'short', month: 'long', day: 'numeric', year: 'numeric' };
-        const dateOptions2 = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' };
-        const timeOptions1 = { hour: 'numeric', minute: 'numeric', hour12: false }
-        const timeOptions2 = { hour: 'numeric', minute: 'numeric', timeZoneName: 'short', hour12: false }
+        const dateOptions2 = { weekday: 'short', month: 'short', day: 'numeric', year: '2-digit' };
+        const timeOptions1 = { hour: 'numeric', minute: 'numeric' }
+        const timeOptions2 = { hour: 'numeric', minute: 'numeric', timeZoneName: 'short' }
+        let date;
         if (event) {
-            let tickets = event.tickets ? Object.values(event.tickets) : [];
+            const tickets = event.tickets ? Object.values(event.tickets) : [];
+            if (event.start_date === event.end_date) {
+                date = new Date(event.start_date).toLocaleString('en-US', dateOptions1)
+            }else{
+                date = `${new Date(event.start_date).toLocaleString('en-US', dateOptions2)} - ${new Date(event.end_date).toLocaleString('en-US', dateOptions2)}`
+            }
+            const time = `${new Date(event.start_time).toLocaleString('en-US', timeOptions1)} - ${new Date(event.end_time).toLocaleString('en-US', timeOptions2)}`
             return(
                 <div>
                     <div
                         className="event-detail-blur-bg"
-                        style={{ backgroundImage: `url(${event.image_url})` }}>
+                        style={{ backgroundImage: `url(${event.image_url.replace('http', 'https')})` }}>
                     </div>
                     <div className="event-detail-main-container">
                         <div className="event-detail-header">
                             <div className="event-detail-header-bg"
-                                style={{ backgroundImage: `url(${event.image_url})` }}>
+                                style={{ backgroundImage: `url(${event.image_url.replace('http', 'https')})` }}>
                             </div>
                             <div className="event-detail-header-info">
                                 <div className="event-detail-header-month">
@@ -79,7 +86,7 @@ export default class EventDetail extends React.Component {
                                     {event.title}
                                 </div>
                                 <div className="event-detail-header-organizer">
-                                    by {event.organizer}
+                                    Hosted by <strong>{event.organizer}</strong>
                                 </div>
                             </div>
                         </div>
@@ -107,19 +114,10 @@ export default class EventDetail extends React.Component {
                             <div className="event-detail-content-sidebar">
                                 <div><b>DATE AND TIME</b></div>
                                 <div className="event-detail-datetime">
-                                    { event.start_date === event.end_date ? 
-                                        <div>
-                                            {new Date(event.start_date).toLocaleString('en-US', dateOptions1)}
-                                            <div className="event-detail-time">
-                                                {new Date(event.start_time).toLocaleString('en-US', timeOptions1)} - {new Date(event.end_time).toLocaleString('en-US', timeOptions2)}
-                                            </div>
-                                        </div>
-                                        :
-                                        <div>
-                                            {new Date(event.start_date).toLocaleString('en-US', dateOptions2)}, {new Date(event.start_time).toLocaleString('en-US', timeOptions1)} -
-                                            {new Date(event.end_date).toLocaleString('en-US', dateOptions2)}, {new Date(event.end_time).toLocaleString('en-US', timeOptions2)}
-                                        </div>
-                                    }
+                                    <div>
+                                        {date}
+                                        <div className="event-detail-time">{time}</div>
+                                    </div>
                                 </div>
                                 <div><b>LOCATION</b></div>
                                 <div className="event-detail-location">
@@ -134,7 +132,7 @@ export default class EventDetail extends React.Component {
                         <div className="event-detail-organizer-detail">
                             <center>
                                 <div><b>ORANGIZER OF THIS EVENT</b></div>
-                                <img src="https://image.flaticon.com/icons/svg/149/149071.svg" />
+                                <img src="https://s3-us-west-1.amazonaws.com/eventise-dev/149071.svg" />
                                 <div className="organizer">{event.organizer}</div>    
                             </center>
                         </div>

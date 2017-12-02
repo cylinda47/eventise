@@ -1,26 +1,27 @@
 .event-detail-blur-bg {
- background: no-repeat center center fixed;
-  background-size: cover;
-  overflow: hidden;
-  filter: blur(60px);
-  position: absolute;
-  height: 600px;
-  width: 150%;
-  top: 50px;
-  left: -50px;
-  right: -50px;
-  bottom: -50px;
-  z-index: -1;
+    background: no-repeat center center fixed;
+    background-size: cover;
+    overflow: hidden;
+    filter: blur(60px);
+    position: absolute;
+    height: 600px;
+    width: 100%;
+    top: 50px;
+    left: -50px;
+    right: -50px;
+    bottom: -50px;
+    z-index: -1;
 }
 
 .event-detail-main-container {
-    z-index: 1;
-    margin: 40px auto;
+    font-family: 'Lato', sans-serif;
     width: 1000px;
-    background-color: white;
     border-radius: 5px;
+    box-shadow: 0px 5px 5px 0px $gray;
+    margin: 40px auto;
+    z-index: 1;
     p {
-        font-weight: 100;
+        font-weight: 300;
     }
 }
 
@@ -40,94 +41,93 @@
 
 .event-detail-header-info {
     text-align: left;
-    padding: 25px;
     width: 320px;
     height: 380px;
+    padding: 25px;
     box-sizing: border-box;
+    background-color: rgba(255,255,255,0.9);
 }
 
 .event-detail-header-month {
-    margin-top: 15px;
-    text-transform: uppercase;
-    letter-spacing: 1.1px;
     font-size: 12px;
-    color: $dark-gray;
-    font-weight: 600;
+    letter-spacing: 1.1px;
     text-align: center;
+    text-transform: uppercase;
     width:35px;
-    font-family: 'Nunito', sans-serif;
+    margin-top: 15px;
+    color: $dark-gray;
 }
 
 .event-detail-header-date {
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
     font-size: 24px;
-    font-weight: 400;
-    color: $dark-gray;
-    padding: 4px 1px 0px 1px;
+    letter-spacing: 0.3px;
     text-align: center;
+    text-transform: uppercase;
     width:35px;
-    font-family: 'Nunito', sans-serif;
+    padding: 4px 1px 0px 1px;
+    color: $dark-gray;
 }
 
 .event-detail-header-title {
-    font-weight: 600;
+    font-weight: 400;
     font-size: 24px;
     margin-top: 50px;
     color: $gray-black;
     letter-spacing: 0.5px;
-    font-family: 'Oxygen', sans-serif;
+    font-family: 'Nunito', sans-serif;
 }
 
 .event-detail-header-organizer {
+    font-weight: 300;
     font-size: 15px;
     letter-spacing: 0.5px;
     color: $dark-gray;
     margin-top: 20px;
-    font-family: 'Oxygen', sans-serif;
+    strong {
+        font-weight: 400;
+    }
 }
 
 .event-detail-register-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 15px 15px 15px 22px;
     border-top: 1px solid $gray;
     border-bottom: 1px solid $gray;
-    padding: 15px 15px 15px 30px;
+    background-color: white;
     div {
         display: flex;
         justify-content: space-between;
     }
     i {
-        font-size: 30px;
+        font-size: 32px;
+        margin-right: 20px;
         cursor: pointer;
     }
     a {
-        font-family: 'Roboto', sans-serif;
-        text-transform: capitalize;
         font-size: 14px;
+        font-weight: 400;
         letter-spacing: 0.2px;
-        font-weight: 700;
-        padding: 10px;
-        background-color: $lightest-gray;
+        text-transform: capitalize;
+        padding: 8px 15px;
+        margin-right: 10px;
         border-radius: 50px;
-        margin-left: 15px;
+        background-color: $lightest-gray;
     }
     a:hover {
         background-color: $gray-black;
         color: white;
     }
     button {
-        background-color: $green;
-        width: 270px;
         font-size: 14px;
-        padding: 13px 15px;
+        letter-spacing: 1.1px;
         text-align: center;
         text-transform: uppercase;
         color: white;
-        letter-spacing: 1px;
-        font-family: 'Nunito', sans-serif;
-        font-weight: 400;
+        width: 270px;
+        padding: 13px 15px;
+        background-color: $green;
         transition: 300ms linear;
     }
     button:hover {
@@ -139,6 +139,7 @@
     display: flex;
     justify-content: space-between;
     padding: 25px;
+    background-color: white;
 }
 
 .event-detail-content-main {
@@ -157,33 +158,35 @@
     font-size: 12px;
     letter-spacing: 1px;
     color: $gray-black;
-    padding: 30px 25px 25px 50px;
+    padding: 30px 25px 25px 40px;
 }
 
-.event-detail-organizer-detail {
-    border-top: 1px solid $bg-gray;
-    padding-left: 25px;
-    img {
-        margin-top: 20px;
-        width: 100px;
-        height: 100%;
+.event-detail-content-main,
+.event-detail-content-sidebar {
+    b {
+        padding: 3px 15px;
+        border-left: 3px solid $lightest-gray;
     }
-}
-
-.organizer {
-    text-transform: initial;
-    font-size: 24px;
-    padding-top: 20px;
+    b:hover {
+        border-color: $theme-color;
+    }
 }
 
 .event-detail-description,
 .event-detail-datetime,
 .event-detail-location {
-    padding: 25px 25px 20px 0;
     font-size: 16px;
-    color: $dark-gray;
     font-family: 'Nunito', sans-serif;
+    font-weight: 300;
     letter-spacing: 0.3px;
+    line-height: 1.6;
+    color: $dark-gray;
+    padding: 25px 25px 20px 0;
+}
+
+.event-detail-datetime,
+.event-detail-location {
+    font-size: 15px;
 }
 
 .event-detail-description {
@@ -207,7 +210,7 @@
 }
 
 .event-detail-edit-bar {
-    padding: 20px;
+    padding: 0px 20px 20px 20px;
     text-align: center;
     background-color: $bg-gray;
     color: $dark-gray;
@@ -215,21 +218,36 @@
         font-size: 14px;
         padding: 10px 15px;
         width: 180px;
-        background-color: white;
+        background-color: $gray;
         border-radius: 5px;
         text-transform: uppercase;
         letter-spacing: 1px;
         font-family: 'Nunito', sans-serif;
         transition: 300ms linear;
+        color: white;
     }
     button:hover {
         background-color: black;
-        color: white;
     }
 }
 
-
 .event-detail-time {
-    margin-top: 20px;
+    margin: 10px 0px;
     color: $blue;
+}
+
+.event-detail-organizer-detail {
+    padding-left: 25px;
+    background-color: $bg-gray;
+    img {
+        margin-top: 20px;
+        width: 100px;
+        height: 100%;
+    }
+}
+            
+.organizer {
+    text-transform: initial;
+    font-size: 24px;
+    padding-top: 20px;
 }

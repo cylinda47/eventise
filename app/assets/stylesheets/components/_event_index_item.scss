@@ -9,15 +9,14 @@
         margin: 0px;
     }
     font-family: 'Nunito', sans-serif;
+    font-weight: 300;
 }
 .event-index-item-detail {
     margin: 20px;
     border: 1px solid $lightest-gray;
     border-bottom: 2px solid $gray;
-    box-sizing: border-box;
     border-radius: 0 0 15px 15px;
-    width: 349px;
-    height: 314px;
+    width: 360px;
     li {
         padding: 0 15px;
     }
@@ -31,19 +30,21 @@
 
 .event-index-item-date {
     margin-top: 15px;
-    font-family: 'Nunito', sans-serif;
     font-size: 11px;
-    letter-spacing: 0.8px;
+    letter-spacing: 0.4px;
     text-transform: uppercase;
     color: $dark-gray;
+    i {
+        margin-right: 5px;
+    }
 }
 
 .event-index-item-title {
-    margin: 2px 0;
-    height: 50px;
-    font-size: 18px;
-    font-weight: 600;
-    height: 53px;
+    border-left: 2px solid $lightest-gray;
+    margin: 5px 19px;
+    font-size: 17px;
+    font-weight: 400;
+    height: 63px;
 }
 
 .event-index-item-title:hover {
@@ -51,29 +52,31 @@
 }
 
 .event-index-item-location {
-    font-size: 14px;
+    font-size: 13px;
+    letter-spacing: 0.4px;
     color: $dark-gray;
+    i {
+        margin-right: 5px;
+    }
     div {
         margin-bottom: 8px;
         height: 14px;
     }
-    font-family: 'Roboto', sans-serif;
-    letter-spacing: 0.5px;
-    font-family: 'Source Sans Pro', sans-serif;
 }
 
 .event-index-item-options {
-    border-top: 1px solid $lightest-gray;
     display: flex;
     justify-content: space-between;
+    border-top: 1px solid $lightest-gray;
+    border-radius: 0 0 15px 15px;
     div {
         border-left: 1px solid $lightest-gray;
         text-align: center;
-        height: 40px;
+        height: 34px;
         padding: 8px 3px 0px 15px;
     }
     div:first-child {
-        padding-left: 5px;
+        padding-left: 1px;
         border: 0px;
     }
     a {
@@ -82,5 +85,8 @@
         color: $blue;
         text-transform: capitalize;
         height: 20px;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-weight: 300;
+        letter-spacing: 0.5px;
     }
 }
