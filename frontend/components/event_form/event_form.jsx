@@ -198,7 +198,6 @@ class EventForm extends React.Component {
     }
 
     render(){
-        console.log(this.state);
         const { addressOpen, is_online_event } = this.state;
         const { formType } = this.props;
         const timeOptions = { hour: 'numeric', minute: 'numeric', hour12: false }
