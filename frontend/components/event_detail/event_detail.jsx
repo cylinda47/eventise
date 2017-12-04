@@ -1,26 +1,24 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import TicketList from './ticket_list';
 import Modal from 'react-modal';
+import autoBind from 'react-autobind';
+import { Link } from 'react-router-dom';
+
 import TicketModalStyle from '../../util/ticket_modal_style';
-import SessionForm from '../session/session_form';
 import SessionModalStyle from '../../util/modal_style';
 
-
+import TicketList from './ticket_list';
+import SessionForm from '../session/session_form';
 
 export default class EventDetail extends React.Component {
     constructor(props){
         super(props);
         this.state = { modalOpen: false };
-        this.onModalClose = this.onModalClose.bind(this);
-        this.onModalOpen = this.onModalOpen.bind(this);
-        this.handleModalClick = this.handleModalClick.bind(this);
-        this.add = this.add.bind(this);
-        this.remove = this.remove.bind(this);
+        autoBind(this);
     }
 
     componentDidMount() {
         this.props.fetchEvent(this.props.eventId);
+        window.scrollTo(0,0);
     }
 
     add(eventId) {
@@ -47,11 +45,17 @@ export default class EventDetail extends React.Component {
         const modalStyle = this.props.currentUserId ? TicketModalStyle : SessionModalStyle;
         modalStyle.content.opacity = 100;
     }
+
+    dateFormat(datetime, option) {
+        const date = new Date(datetime);
+        const utc = new Date(date.getTime() + date.getTimezoneOffset() * 60000);
+        return utc.toLocaleString('en-US', option);
+    }
     
     render(){
         const { event, currentUserId, currentUser, login, signup, errors } = this.props;
         const modalStyle = currentUserId ? TicketModalStyle : SessionModalStyle;
-        const dateOptions1 = { weekday: 'short', month: 'long', day: 'numeric', year: 'numeric' };
+        const dateOptions1 = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
         const dateOptions2 = { weekday: 'short', month: 'short', day: 'numeric', year: '2-digit' };
         const timeOptions1 = { hour: 'numeric', minute: 'numeric' }
         const timeOptions2 = { hour: 'numeric', minute: 'numeric', timeZoneName: 'short' }
@@ -59,11 +63,11 @@ export default class EventDetail extends React.Component {
         if (event) {
             const tickets = event.tickets ? Object.values(event.tickets) : [];
             if (event.start_date === event.end_date) {
-                date = new Date(event.start_date).toLocaleString('en-US', dateOptions1)
+                date = `${this.dateFormat(event.start_date, dateOptions1)}`
             }else{
-                date = `${new Date(event.start_date).toLocaleString('en-US', dateOptions2)} - ${new Date(event.end_date).toLocaleString('en-US', dateOptions2)}`
+                date = `${this.dateFormat(event.start_date, dateOptions2)} - ${this.dateFormat(event.end_date, dateOptions2)}`
             }
-            const time = `${new Date(event.start_time).toLocaleString('en-US', timeOptions1)} - ${new Date(event.end_time).toLocaleString('en-US', timeOptions2)}`
+            const time = `${this.dateFormat(event.start_time, timeOptions1)} - ${this.dateFormat(event.end_time, timeOptions2)}`
             return(
                 <div>
                     <div
@@ -97,7 +101,7 @@ export default class EventDetail extends React.Component {
                                 <i className="fa fa-bookmark" onClick={this.remove(event.id)} aria-hidden="true"></i>
                             }
                             
-                                {event.category_names.filter(el => el.length > 0).map((name, idx) =>
+                                {event.categories.filter(el => el.length > 0).map((name, idx) =>
                                     <Link key={idx} to={`/category/${name}`}>{name.replace("_", "&")}</Link>
                                 )}
                             
@@ -123,7 +127,7 @@ export default class EventDetail extends React.Component {
                                 <div className="event-detail-location">
                                     {event.is_online_event ? "This event is online." :
                                     <ul>
-                                        {event.address.map((el, idx) => <li key={idx}>{el}</li>)}
+                                        {event.addresses.map((el, idx) => <li key={idx}>{el}</li>)}
                                     </ul>
                                     }
                                 </div>

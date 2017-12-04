@@ -6,3 +6,10 @@ export const createOrder = order => (
         data: { order }
     })
 )
+
+export const fetchOrders = () => (
+    $.ajax({
+        method: 'GET',
+        url: `/api/orders`
+    })
+)

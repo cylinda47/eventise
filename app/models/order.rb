@@ -8,4 +8,8 @@ class Order < ApplicationRecord
         foreign_key: :purchaser_id,
         class_name: :User
 
+    has_one :event,
+        through: :ticket,
+        source: :event
+
 end

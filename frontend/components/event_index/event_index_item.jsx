@@ -1,11 +1,11 @@
 import React from 'react';
+import autoBind from 'auto-bind';
 import { withRouter, Link } from 'react-router-dom';
 
 class EventIndexItem extends React.Component {
     constructor(props) {
         super(props);
-        this.add = this.add.bind(this);
-        this.remove = this.remove.bind(this);
+        autoBind(this);
     }
 
     add(eventId) {
@@ -14,6 +14,12 @@ class EventIndexItem extends React.Component {
 
     remove(eventId) {
         return e => this.props.removeBookmark(eventId);
+    }
+
+    dateFormat(datetime, option) {
+        const date = new Date(datetime);
+        const utc = new Date(date.getTime() + date.getTimezoneOffset() * 60000);
+        return utc.toLocaleString('en-US', option);
     }
 
     render() {
@@ -34,19 +40,19 @@ class EventIndexItem extends React.Component {
                             <Link to={`/events/${event.id}`} key={event.id}>
                             <li className="event-index-item-date">
                                 <i className="fa fa-clock-o" aria-hidden="true"></i>
-                                {new Date(event.start_date).toLocaleString('en-US', dateOptions)} | {new Date(event.start_time).toLocaleString('en-US', timeOptions)}
+                                    {this.dateFormat(event.start_date, dateOptions)} | {this.dateFormat(event.start_time, timeOptions)}
                             </li>
                             <li className="event-index-item-title"><div>{event.title}</div></li>
                             <li className="event-index-item-location">
                                 <div>
                                     <i className="fa fa-map-marker" aria-hidden="true"></i>
-                                    {event.is_online_event ? "Online Event" : event.address[0]}
+                                    {event.is_online_event ? "Online Event" : event.addresses[0]}
                                 </div>
                             </li>
                             </Link>
                             <li className="event-index-item-options">
                                 <div>
-                                    {event.category_names.filter(el => el.length > 0).map((name, idx) => 
+                                    {event.categories.filter(el => el.length > 0).map((name, idx) => 
                                         <Link key={idx} to={`/category/${name}`} >#{name.replace("_", "&")}</Link>
                                     )}
                                 </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import merge from 'lodash/merge';
+import autoBind from 'auto-bind';
 
 export default class TicketList extends React.Component {
     constructor(props){
@@ -19,17 +20,16 @@ export default class TicketList extends React.Component {
             totalPrice: 0,
             confirmOrder: false
          };
-        this.showQuantity = this.showQuantity.bind(this);
-        this.setQuantity = this.setQuantity.bind(this);
-        this.handleOrder = this.handleOrder.bind(this);
-        this.backToList = this.backToList.bind(this);
-        this.goToConfirm = this.goToConfirm.bind(this);
-        this.goToCheckout = this.goToCheckout.bind(this);
+        autoBind(this);
     }
 
-    showQuantity(quantity){
+    showQuantity(remaining_qty, quantity){
         const qty_arr = [];
-        for(let i=0;i <= quantity;i++){
+        let qty = remaining_qty;
+        if (quantity === 0 || remaining_qty > 10) {   
+            qty = 10;
+        }
+        for (let i = 0; i <= qty; i++) {
             qty_arr.push(i);
         }
         return qty_arr;
@@ -46,7 +46,6 @@ export default class TicketList extends React.Component {
             newTickets.forEach(ticket => totalQty += ticket.quantity)
             newTickets.forEach((ticket, i) => totalPrice += (ticket.quantity * this.props.tickets[i].price))
             this.setState({ totalQty, totalPrice, tickets: newTickets });
-            
         }
     }
 
@@ -148,12 +147,15 @@ export default class TicketList extends React.Component {
                     {tickets.map((ticket, index) =>
                         <div className="ticket-list-item" key={index}>
                             <div className="ticket-list-item-name">{ticket.name}</div>
-                                <div className="ticket-list-item-price">$ {ticket.price}0 | Remaining: {ticket.remaining_qty}</div>
+                                <div className="ticket-list-item-price">
+                                    {ticket.price > 0 ? `$ ${ticket.price}0` : "FREE"}
+                                    {ticket.quantity > 0 ? ` | Remaining: ${ticket.remaining_qty}` : ""}
+                                </div>
 
-                            {ticket.remaining_qty < 1 ? <p className="ticket-list-soldout">SOLD OUT</p> :
+                            {ticket.price > 0 && ticket.remaining_qty < 1 ? <p className="ticket-list-soldout">SOLD OUT</p> :
                                 <select value={this.state.tickets[index].quantity} id={`dropdown-${index}`} className="ticket-list-dropdown" onChange={this.setQuantity(index)}>
                                     {
-                                        this.showQuantity(ticket.remaining_qty).map((qty, index) =>
+                                        this.showQuantity(ticket.remaining_qty, ticket.quantity).map((qty, index) =>
                                             <option value={qty} key={index}>{qty}</option>
                                         )
                                     }

@@ -4,6 +4,5 @@ class Category < ApplicationRecord
 
     validates :name, inclusion: CATEGORIES
     validates :name, :event_id, presence: true
-
-    belongs_to :event
+    
 end

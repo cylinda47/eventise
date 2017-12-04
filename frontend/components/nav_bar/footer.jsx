@@ -8,12 +8,16 @@ export default class Footer extends React.Component {
         return (    
             <div className="footer">
                 <div className="footer-container">
+                    <label>Linda</label>
                     <div className="footer-links">
-                            <p>Linda</p>
-                            Developer<span>|</span><b>Linda Chan</b>
+                        <div><a href="https://github.com/cylinda47/eventise/">Github</a></div>
+                        <div>|</div>
+                        <div><a href="https://www.linkedin.com/in/linda-cyl/">LinkedIn</a></div>
                     </div>
                     <div className="disclaimer">
-                        © 2017 Eventise | A Clone of <a href="https://www.eventbrite.co.uk/">Eventbrite</a>
+                        <div>© 2017 Eventise</div>
+                        <div>|</div>
+                        <div>A Clone of <a href="https://www.eventbrite.co.uk/">Eventbrite</a></div>
                     </div>
                 </div>
             </div>

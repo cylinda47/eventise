@@ -1,9 +1,11 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
-import SessionForm from '../session/session_form';
 import Modal from 'react-modal';
+import autoBind from 'react-autobind';
 import ModalStyle from '../../util/modal_style';
-import CategoryBar from '../category/category_bar';
+import { Link, withRouter } from 'react-router-dom';
+
+import SessionForm from '../session/session_form';
+import { CategoryBar } from '../category/category_bar';
 
 class NavBar extends React.Component {
     constructor(props){
@@ -12,12 +14,7 @@ class NavBar extends React.Component {
             modalOpen: false,
             demoLogin: false
         };
-        this.handleModalClick = this.handleModalClick.bind(this);
-        this.onModalClose = this.onModalClose.bind(this);
-        this.onModalOpen = this.onModalOpen.bind(this);
-        this.handleDemoLogin = this.handleDemoLogin.bind(this);
-        this.navigateToBrowse = this.navigateToBrowse.bind(this);
-        this.navigateToCreate = this.navigateToCreate.bind(this);
+        autoBind(this);
     }
 
     componentDidMount() {

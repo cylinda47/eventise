@@ -1,11 +1,17 @@
 import * as TicketAPIUtil from '../util/ticket_api_util';
 
 export const RECEIVE_ORDER = "RECEIVE_ORDER";
+export const RECEIVE_ORDERS = "RECEIVE_ORDERS";
 export const RECEIVE_ORDER_ERRORS = "RECEIVE_ORDER_ERRORS";
 
 const receiveOrder = order => ({
     type: RECEIVE_ORDER,
     order
+});
+
+const receiveOrders = orders => ({
+    type: RECEIVE_ORDERS,
+    orders
 });
 
 const receiveOrderErrors = errors => ({
@@ -17,4 +23,9 @@ export const createOrder = order => dispatch => (
     TicketAPIUtil.createOrder(order)
         .then(order => dispatch(receiveOrder(order)),
         errors => dispatch(receiveOrderErrors(errors.responseJSON)))
+);
+
+export const fetchOrders = () => dispatch => (
+    TicketAPIUtil.fetchOrders()
+        .then(orders => dispatch(receiveOrders(orders)))
 );

@@ -8,7 +8,8 @@
         text-transform: capitalize;
         padding-bottom: 30px;
     }
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
 }
 
 .category-show-event-container {
@@ -22,39 +23,9 @@
     display: flex;
     justify-content: flex-start;
     box-shadow: 5px 5px 5px -5px $gray;
-}
-
-.category-show-event-details {
-    width: 100%;
-    div:nth-child(1) {
-        padding: 5px 15px;
-        text-align: left;
+    &:last-child {
+        margin-bottom: 30px;
     }
-    div:nth-child(2) {
-        padding: 5px 15px;
-        text-align: left;
-    }
-    div:nth-child(3) {
-        padding: 5px 15px;
-        text-align: left;
-    }
-    div:last-child{
-        padding: 0;
-        div {
-            a {
-                padding-left: 5px;
-                margin-right: 15px;
-            }
-            padding: 10px;
-        }
-    }
-}
-
-#location-height-fix {
-    min-height: 36px;
-    font-size: 14px;
-    padding-left: 15px;
-    font-weight: 700;
 }
 
 .category-show-event-image {
@@ -66,6 +37,35 @@
     border-right: 1px solid $lightest-gray;
 }
 
+.category-show-event-details {
+    width: 100%;
+    a {
+        div:nth-child(1) {
+            padding: 15px 15px 5px 15px;
+            line-height: 20px;
+            text-align: left;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            color: $gray-black;
+            text-transform: uppercase;
+        }
+        div:nth-child(2) {
+            font-weight: 700;
+            padding: 10px 15px;
+            line-height: 25px;
+            text-align: left;
+            height: 55px;
+        }
+    }
+}
+
+#location-height-fix {
+    font-size: 14px;
+    padding-left: 15px;
+    padding: 10px 15px;
+    text-align: left;
+}
+
 .category-show-item-options {
     border-top: 1px solid $lightest-gray;
     display: flex;
@@ -75,14 +75,18 @@
         text-align: center;
         vertical-align: -webkit-baseline-middle;
     }
-    div:first-child {
-        border: 0px;
+    div:nth-child(2) {
+        padding: 4px 10px;
     }
     a {
         font-size: 14px;
-        margin: 0px;
+        margin-top: 3px;
+        margin-left: 15px;
         color: $blue;
         text-transform: capitalize;
         height: 0px;
+    }
+    i {
+        cursor: pointer;
     }
 }

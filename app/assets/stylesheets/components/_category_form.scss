@@ -7,26 +7,29 @@
     display: flex;
     justify-content: space-between;
     text-transform: initial;
-    width: 85%;
-    margin: 0 auto;
+    width: 81%;
+    margin: 0px 55px;
 }
 
 .category-option {
+    flex: 3;
     select {
-        padding: 12px;
-        width: 140px;
+        padding: 10px;
+        width: 160px;
         top: 50%;
         transform: translateY(-50%);
         right: 0;
         background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right;
         -webkit-appearance: none;
-        background-position-x: 140px;
+        background-position-x: 150px;
         margin: 25px 10px;
     }
 }
 
 .category-choose {
+    flex: 4;
     display: flex;
     align-items: center;
     height: 50px;
+    position: relative;
 }

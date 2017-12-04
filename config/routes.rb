@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
     resources :categories, only: [:show, :update]
     resources :bookmarks, only: [:create, :destroy]
-    resources :orders, only: [:create, :show]
+    resources :orders, only: [:index, :create, :show]
   end
   root "static_pages#root"
 end

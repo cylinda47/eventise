@@ -4,14 +4,14 @@ import merge from 'lodash/merge';
 export default class CategoryForm extends React.Component {
     constructor(props){
         super(props);
-        this.categories = ["Music", "Arts", "Food_Drink", "Classes", "Parties", "Sports_Wellness", "Networking"]
+        this.categoryOptions = ["Music", "Arts", "Food_Drink", "Classes", "Parties", "Sports_Wellness", "Networking"]
         this.categoryOption = this.categoryOption.bind(this);
         this.setOptions = this.setOptions.bind(this);
     }
 
     setOptions(idx){
         return event => {
-            let newCategory = merge([], this.props.category_names);
+            let newCategory = merge([], this.props.categories);
             let name = $(`#category-option-${idx} option:selected`).val().toLowerCase();
             newCategory[idx] = name;
             this.props.setCategory(newCategory);
@@ -22,13 +22,13 @@ export default class CategoryForm extends React.Component {
         return(
             <div className="category-option">
                 <select
-                    value={this.props.category_names[idx]}
+                    value={this.props.categories[idx]}
                     id={`category-option-${idx}`}
                     className="category-form-dropdown"
                     onChange={this.setOptions(idx)}>
                     <option value=""></option>
                     {
-                        this.categories.map((category) =>
+                        this.categoryOptions.map((category) =>
                             <option value={category.toLowerCase()} key={category}>{category.replace("_", " & ")}</option>
                         )
                     }
@@ -46,8 +46,8 @@ export default class CategoryForm extends React.Component {
                 </div>
                 <div className="category-container">
                     <div className="category-choose">
-                    <span>Please choose up to 2 categories:
-                        </span>
+                    <header id="categories"><span>Please choose a category for your event:
+                        </span></header>
                     </div>
                     {this.categoryOption(0)}
                     {this.categoryOption(1)}

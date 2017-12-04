@@ -1,39 +1,36 @@
-h3 {
-  margin-left: 15px;
+
+.previewComponent {
+  display: flex;
+  form {
+    flex: 1;
+  }
+  div {
+    flex: 2;
+  }
 }
+
 .fileInput {
-  border-bottom: 4px solid #d3d3d3;
-  border-right: 4px solid #d3d3d3;
-  border-top: 1px solid #000;
-  border-left: 1px solid #000;
   padding: 10px;
   margin: 15px;
+  border: 0px solid;
   cursor: pointer;
 }
+
 .imgPreview {
   text-align: center;
   margin: 5px 10px;
-  width: 450px;
+  padding-right: 30px;
   object-fit: contain;
-  border-left: 1px solid $gray;
-  border-right: 1px solid $gray;
-  border-top: 5px solid $gray;
-  border-bottom: 5px solid $gray;
   border-radius: 5px;
 }
 .imgPreview img {
-  width: 100%;
+  width: 85%;
   height: 100%;
 }
 .previewText {
-  width: 100%;
+  width: 85%;
   margin: 20px 0px;
   text-transform: initial;
   padding: 5px;
   font-size: 14px;
-}
-
-.centerText {
-  text-align: center;
-  width: 300px;
 }

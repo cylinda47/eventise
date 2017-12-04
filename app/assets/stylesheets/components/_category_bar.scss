@@ -1,4 +1,4 @@
-div.scrollmenu {
+.scrollmenu {
     border-bottom: 1px solid $lightest-gray;
     border-top: 1px solid $lightest-gray;
     box-shadow: 0px 5px 5px -5px $gray;
@@ -23,19 +23,19 @@ div.scrollmenu {
         position: absolute;
         text-transform: initial;
         font-size: 40px;
-        top: 70px;
-        left: 30px;
+        font-weight: 400;
+        top: 50%;
+        left: 50%;
+        margin-top: -25px;
+        transform: translateX(-50%);
+        text-shadow: 0px 0px 10px $gray;
     }
 }
 
-div.scrollmenu a {
+.scrollmenu a {
     display: inline-block;
     color: white;
     text-align: center;
     padding: 20px 15px;
     text-decoration: none;
-}
-
-div.scrollmenu a:hover {
-    // background-color: $gray;
 }

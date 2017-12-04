@@ -72,21 +72,28 @@
     background-color: white;
     right: 0px;
     label {
+        &:first-child {
+            padding: 7px 19px;
+        }
         padding: 19px;
-        width: 125px;
+        width: 150px;
         text-align: left;
         background-color: white;
         display: block;
         border-bottom: 1px solid $lightest-gray;
         cursor: pointer;
+        vertical-align: middle;
         div {
-            margin-left: 40px;
-            display: inline;
+            margin-left: 60px;
+            padding-top: 10px;
+            display: inline-block;
             background-color: $theme-color;
-            padding: 10px 11px;
-            border-radius: 50%;
+            border-radius: 20px;
             color: white;
             font-weight: 700;
+            width: 40px;
+            height: 30px;
+            text-align: center;
         }
     }
     label:hover {

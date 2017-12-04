@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171130192009) do
+ActiveRecord::Schema.define(version: 20171203003645) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20171130192009) do
   create_table "events", force: :cascade do |t|
     t.string "title", null: false
     t.text "description", null: false
-    t.string "address", default: [], array: true
+    t.string "addresses", default: [], array: true
     t.float "lat"
     t.float "lng"
     t.date "start_date", null: false
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20171130192009) do
     t.boolean "is_online_event", default: false
     t.time "start_time"
     t.time "end_time"
+    t.string "categories", default: [], array: true
     t.index ["end_date"], name: "index_events_on_end_date"
     t.index ["organizer_id"], name: "index_events_on_organizer_id"
     t.index ["start_date"], name: "index_events_on_start_date"

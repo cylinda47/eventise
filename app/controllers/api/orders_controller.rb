@@ -1,7 +1,12 @@
 class Api::OrdersController < ApplicationController
+
+    def index
+        @orders = current_user.orders.uniq
+        render "api/orders/index"
+    end
+
     def create
         @order = Order.new(order_params)
-        # debugger
         if @order.save
             render "api/orders/show"
         else
